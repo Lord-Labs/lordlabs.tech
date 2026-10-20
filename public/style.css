@@ -2426,8 +2426,7 @@ html[dir="rtl"] .art-bottom {
 .art-stage {
   height: 400px;
   min-height: 0;
-  display: grid;
-  place-items: center;
+  display: block;
 }
 .sculpture {
   height: 100%;
