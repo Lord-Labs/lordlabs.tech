@@ -4,7 +4,7 @@ Thanks for helping improve the LORD Labs website. Small fixes, clearer documenta
 
 1. Check [existing issues](https://github.com/Lord-Labs/lordlabs.tech/issues) before opening a new one. For a large change, discuss the idea in an issue first.
 2. Fork this repository and create a branch.
-3. Edit files in `public/`. Keep both languages in sync (`index.html` and `app.js`). Preserve the supplied brand assets and palette.
+3. Edit files in `public/`. Keep both languages in sync (`index.html` and `ar.js`). Preserve the supplied brand assets and palette.
 4. Run `npm test` and `npm run build` with Node.js 22+. No dependency installation is needed.
 5. Check desktop and mobile layouts, keyboard focus, Arabic RTL, and reduced motion. For a UI change, include screenshots with your pull request.
 6. Open a pull request explaining the problem, the change, and what you verified.

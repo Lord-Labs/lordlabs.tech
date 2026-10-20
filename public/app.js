@@ -1,76 +1,6 @@
 import { getPublicRepositories } from "./repositories.js";
+import { ar } from "./ar.js";
 
-const ar = {
-  skip: "تخطَّ إلى المحتوى",
-  navProjects: "المشاريع",
-  navAbout: "عن المعمل",
-  navContribute: "ساهم معنا",
-  eyebrow: "فكر مستقل. ومصدر مفتوح.",
-  hero1: "نبني أفكارًا",
-  hero2: "تستحق المشاركة.",
-  heroDescription:
-    "معمل برمجيات صغير، بفضول كبير. نصنع أدوات مفيدة، ونستكشف أفكارًا جديدة، ونشارك معكم رحلة البناء.",
-  explore: "استكشف المشاريع",
-  viewGithub: "تابعنا على GitHub",
-  heroNote: "نصنع بفضول. ونشارك مع الجميع.",
-  artCaption: "أجزاء صغيرة. احتمالات أكبر.",
-  strip1: "مساحة تتطور، بطبيعتها.",
-  strip2: "فضول ← كود ← مساهمة",
-  projectKicker: "01 / ما نبنيه",
-  snapshot: "لقطة من المستودعات",
-  live: "مباشر من GitHub",
-  projectsTitle: "أفكارنا، على المكشوف.",
-  projectsIntro:
-    "من أول سطر كود، إلى ما سيأتي بعده.\nاستكشف ما يتشكل داخل المعمل.",
-  website: "موقع الويب",
-  openSource: "مفتوح المصدر",
-  siteDescription:
-    "مساحة المعمل على الويب. موقع خفيف باللغتين العربية والإنجليزية، مستوحى من هوية Patchwork.",
-  nextKicker: "دعوة مفتوحة",
-  nextTitle: "مساحة للفكرة القادمة.",
-  nextDescription:
-    "رحلة المعمل في بدايتها. تظهر المشاريع العامة الجديدة هنا فور نشرها.",
-  followLab: "استكشف الأورجانيزيشن",
-  publicOnly: "مستودعات عامة. عمل حقيقي. وتطور مستمر.",
-  allRepositories: "جميع المستودعات",
-  aboutKicker: "02 / طريقة تفكيرنا",
-  about1: "معمل صغير.",
-  about2: "احتمالات مفتوحة.",
-  aboutDescription:
-    "LORD Labs معمل برمجيات مستقل أسسه أحمد شعبان. مساحة للمشاريع المفيدة، والتجارب المدروسة، والتعلم من خلال البناء.",
-  founder: "المؤسس والمطور",
-  principle1: "الفائدة أولًا.",
-  principle1Description:
-    "نبدأ بمشكلة حقيقية. ونصنع شيئًا يجعل جزءًا صغيرًا من يوم شخص ما أفضل.",
-  principle2: "المشاركة هي الأساس.",
-  principle2Description:
-    "نشارك الكود وطريقة التفكير وراءه. لتتمكن من فهمه، واستخدامه، والبناء عليه.",
-  principle3: "معًا، نصنع الأفضل.",
-  principle3Description:
-    "الأفكار الجيدة تأتي من كل مكان. سؤال، أو إصلاح، أو وجهة نظر جديدة؛ كلها تدفع العمل للأمام.",
-  contributeKicker: "03 / قطعتك تكمل الصورة",
-  contribute1: "الأشياء الكبيرة تبدأ",
-  contribute2: "بمساهمة صغيرة.",
-  contributeIntro:
-    "مش محتاج فكرة كبيرة عشان تشارك.\nقليل من الفضول بداية كافية.",
-  exploreCode: "استكشف الكود",
-  exploreCodeDescription:
-    "اقرأ الكود، وانسخه، وطوّره بطريقتك. ابحث عن مشروع يثير فضولك.",
-  browseRepos: "تصفح المستودعات",
-  shareIdea: "ابدأ حوارًا",
-  shareIdeaDescription:
-    "وجدت مشكلة أو عندك فكرة للموقع؟ افتح Issue. كل تفصيلة بتفرق.",
-  openIssue: "افتح Issue",
-  makeContribution: "ابدأ أول مساهمة",
-  makeContributionDescription:
-    "كود، أو توثيق، أو ترجمة أفضل. توجد أكثر من طريقة للمشاركة.",
-  readGuide: "اقرأ دليل المساهمة",
-  closingKicker: "المساهمة القادمة قد تكون مساهمتك.",
-  closingTitle: "لنبنِ معًا، على المكشوف.",
-  footerNote: "برمجيات مستقلة. أفكار مفتوحة.",
-  repository: "مستودع",
-  noDescription: "استكشف هذا المشروع والكود الخاص به على GitHub.",
-};
 const originals = new Map(
   [...document.querySelectorAll("[data-i18n]")].map((element) => [
     element,
@@ -78,6 +8,7 @@ const originals = new Map(
   ]),
 );
 let language = "en";
+let exploded = false;
 let live = false;
 let repositories = [];
 function setLanguage(next) {
@@ -139,19 +70,19 @@ function setLanguage(next) {
         : "Explore lordlabs.tech on GitHub",
     );
   document
-    .querySelector("#reassemble")
+    .querySelector("#sculpture")
     .setAttribute(
       "aria-label",
-      next === "ar" ? "أعد تركيب الوحدات" : "Reassemble the blocks",
+      next === "ar"
+        ? "وحدات مجسمة لهوية Patchwork مع وحدة برتقالية تمثل المساهمة."
+        : "Sculptural Patchwork blocks with an orange contribution piece.",
     );
-  document.querySelector("#sculpture").alt =
-    next === "ar"
-      ? "وحدات مجسمة تشكل شعار LORD Labs ومربع برتقالي يمثل المساهمة."
-      : "Isometric blocks forming the LORD Labs symbol, with an orange contribution block.";
   document.title =
     next === "ar"
-      ? "LORD Labs — نبني أفكارًا تستحق المشاركة."
-      : "LORD Labs — Build something worth sharing.";
+      ? "LORD Labs — نبني أفكارًا، لتبني عليها."
+      : "LORD Labs — Built to be built upon.";
+  document.querySelector("#copy-status").textContent = "";
+  updateArt();
   updateStatus();
   renderRepositories();
   try {
@@ -249,14 +180,59 @@ document.addEventListener("keydown", (event) => {
     menuButton.focus();
   }
 });
+function updateArt() {
+  const button = document.querySelector("#reassemble");
+  const label =
+    language === "ar"
+      ? ar[exploded ? "assembleView" : "explodeView"]
+      : exploded
+        ? "Assemble view"
+        : "Explode view";
+  button.setAttribute("aria-pressed", String(exploded));
+  button.setAttribute("aria-label", label);
+  button.querySelector("[data-i18n]").textContent = label;
+  document
+    .querySelector("#art-stage")
+    .classList.toggle("is-exploded", exploded);
+}
 document.querySelector("#reassemble").addEventListener("click", () => {
-  const stage = document.querySelector("#art-stage");
-  stage.classList.remove("rebuilding");
-  requestAnimationFrame(() => {
-    stage.classList.add("rebuilding");
-    setTimeout(() => stage.classList.remove("rebuilding"), 700);
-  });
+  exploded = !exploded;
+  updateArt();
 });
+document.querySelector("#copy-repo").addEventListener("click", async () => {
+  const url = "https://github.com/Lord-Labs/lordlabs.tech";
+  const status = document.querySelector("#copy-status");
+  try {
+    await navigator.clipboard.writeText(url);
+    status.textContent =
+      language === "ar" ? ar.copied : "Repository link copied.";
+  } catch {
+    status.textContent =
+      (language === "ar" ? ar.copyFailed : "Could not copy. Repository link:") +
+      " " +
+      url;
+  }
+});
+const navigation = document.querySelectorAll(".desktop-nav a");
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries)
+        if (entry.isIntersecting) {
+          for (const link of navigation) {
+            if (link.hash === "#" + entry.target.id)
+              link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
+          }
+        }
+    },
+    { rootMargin: "-15% 0px -60% 0px" },
+  );
+  for (const section of document.querySelectorAll(
+    ".hero-shell, #projects, #about, #contribute",
+  ))
+    observer.observe(section);
+}
 document.querySelector("#year").textContent = new Date().getFullYear();
 try {
   if (localStorage.getItem("lordlabs-language") === "ar") setLanguage("ar");

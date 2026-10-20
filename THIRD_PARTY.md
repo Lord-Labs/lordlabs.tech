@@ -18,4 +18,4 @@ Self-hosted WOFF2 files in `public/assets/fonts/` are from Google Fonts: [Space 
 
 ## Original illustration
 
-`public/assets/patchwork.svg` was created for this website as a vector illustration inspired by the supplied modular identity. `scripts/prepare-assets.mjs` reproduces it and retrieves pinned Lucide icons and Google Fonts. The official GitHub SVG is retained locally and is not fetched by that helper.
+`public/assets/patchwork-studio.svg` and its inline interactive version in `public/index.html` were created for this website as vector illustrations inspired by the supplied modular identity. `scripts/patchwork-art.mjs` generates the sculpture. The contribution illustrations are original CSS/SVG compositions. `scripts/prepare-assets.mjs` regenerates the artwork export and retrieves pinned Lucide icons and Google Fonts. The official GitHub SVG is retained locally and is not fetched by that helper. All supplied LORD Labs logos remain unmodified.
