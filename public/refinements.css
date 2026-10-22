@@ -1,0 +1,137 @@
+/* Shared bilingual type, navigation, and product presentation. */
+@font-face{font-family:Jakarta;src:url('/assets/fonts/jakarta-latin.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:Alexandria;src:url('/assets/fonts/alexandria-arabic.woff2') format('woff2');font-weight:400 700;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC}
+:root{--font:Jakarta,Arial,sans-serif;--display:Jakarta,Arial,sans-serif;--motion-fast:180ms;--motion-medium:360ms}
+html[lang=ar]{--font:Alexandria,Jakarta,Tahoma,sans-serif;--display:Alexandria,Jakarta,Tahoma,sans-serif}
+html[lang=ar] body{font-family:var(--font)}
+html[lang=en] [data-locale=ar],html[lang=ar] [data-locale=en]{display:none!important}
+html[lang=ar] :is(h1,h2,h3,.eyebrow,.mono,.repo-category,.stage-edition,.contribution-invitation h3,.closing h2){letter-spacing:0}
+html[lang=ar] :is(.eyebrow,.mono,.repo-category,.stage-edition){font-family:var(--font)}
+html[lang=ar] .language{font-family:Jakarta,Arial,sans-serif}
+html[lang=en] .language{font-family:Alexandria,Tahoma,sans-serif}
+:is(.section-heading>p,.projects .section-heading>p,.about-description,.principles p,.journal-card p,.contribution-invitation>p:not(.eyebrow),.closing .closing-description){font-size:15px;line-height:1.9}
+.section-heading>p,.projects .section-heading>p{max-width:370px}
+.desktop-nav a{font-size:13px;font-weight:500;opacity:1}
+.header-shell .header,.header-shell .brand img{transition:background var(--motion-medium),box-shadow var(--motion-medium),border-color var(--motion-medium)}
+.header-shell.is-compact .header{max-width:1320px;min-height:78px;padding-inline:0}
+.header-shell.is-compact .brand img{width:190px}
+.header-shell.is-compact .header{padding-inline:20px}
+.nav-highlight{transition:transform var(--motion-medium) var(--ease),width var(--motion-medium) var(--ease),opacity var(--motion-fast)}
+.language{font-size:12px;border:1px solid var(--line);border-radius:24px;padding-inline:12px;min-width:74px}
+.header-shell .search-trigger,.sky-switch,.mobile-nav summary{min-height:44px;min-width:44px}
+.mobile-nav[open] nav{animation:menu-arrive 220ms var(--ease) both}
+.mobile-nav nav a{transition:background var(--motion-fast),color var(--motion-fast)}
+.mobile-nav nav a[aria-current]{background:var(--subtle);font-weight:700}
+@keyframes menu-arrive{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+html[dir=rtl] .reading-progress{transform-origin:right}
+html[dir=rtl] .journey-rail{right:auto;left:12px}
+html[dir=rtl] .rail-label{right:auto;left:42px}
+.journey-rail a[aria-current] .rail-label{opacity:1;transform:none}
+.rail-number{transition:background 200ms,color 200ms,transform var(--motion-medium) var(--ease)}
+.journey-rail a[aria-current] .rail-number{transform:scale(1.12)}
+.hero-description{font-size:16px;line-height:1.9;max-width:600px}
+html[lang=ar] .hero-description{font-size:16px;line-height:2;max-width:630px}
+html[lang=ar] .studio-hero h1{font-size:clamp(48px,6.6vw,91px);line-height:1.65;letter-spacing:0}
+html[lang=ar] .section-heading h2{line-height:1.55;font-size:clamp(35px,4.2vw,58px)}
+html[lang=ar] .about-inner h2{line-height:1.65;font-size:clamp(32px,3.7vw,50px)}
+html[lang=ar] .journal-card h3{line-height:1.7;font-weight:500}
+html[lang=ar] .article-header h1{line-height:1.6;letter-spacing:0}
+html[lang=ar] .article-body :is(p,blockquote){line-height:2.15}
+
+/* Selected work, presented as two independent graphic posters. */
+.mono,.rail-number,.project-filters button>span+span{font-family:var(--font);font-variant-numeric:tabular-nums}
+.work-controls{position:static;display:flex;align-items:center;gap:24px;border-block:1px solid var(--line);padding-block:16px;margin-top:36px;box-shadow:none}
+.project-filters{background:transparent;border:0;box-shadow:none;border-radius:0;padding:0;gap:20px;isolation:auto}
+.project-filters button{padding:10px 0;font-size:13px;min-height:46px;color:var(--muted);border-bottom:2px solid transparent;border-radius:0}
+.project-filters button[aria-pressed=true]{color:var(--ink);border-color:currentColor;background:transparent;font-weight:700}
+.filter-selection{display:none}.project-filters button>span+span{font-size:10px}
+.search-field input{font-size:12px;min-height:42px}.select-field label{font-size:10px}.select-field select{font-size:11px;min-height:32px}
+.results-line,.data-state,.explorer-note{font-size:11px}
+.repository-list{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start;gap:clamp(28px,4.5vw,70px)}
+.repo-card,.repo-card:hover,.repo-card:nth-child(even){display:block;min-width:0;overflow:visible;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;animation:none;scroll-margin-top:120px}
+.repo-card:nth-child(even){margin-top:148px}
+.repo-card:only-child{grid-column:1/-1;width:100%;max-width:700px;margin-inline:auto}
+.identity-zipzap{--poster:#d5f568;--poster-ink:#123c32;--poster-shape:#a9d24c;--poster-tilt:-7deg;--poster-x:4%}
+.identity-lor{--poster:#c8b8fa;--poster-ink:#2d2147;--poster-shape:#f381a9;--poster-tilt:7deg;--poster-x:-4%}
+.project-poster{position:relative;margin:0;min-width:0;height:690px;overflow:hidden;isolation:isolate;background:var(--poster);color:var(--poster-ink);border-radius:3px;cursor:zoom-in}
+.project-poster::before{content:'';position:absolute;width:370px;height:370px;border:68px solid var(--poster-shape);border-radius:50%;inset:auto auto 80px -100px;z-index:-1;transition:transform 900ms var(--ease)}
+.identity-lor .project-poster::before{border-radius:0;transform:rotate(35deg);width:300px;height:300px;inset:140px -110px auto auto;border-width:80px}
+.poster-topline{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 28px 0;z-index:3;pointer-events:none}
+.poster-topline .mono{font-size:9px;letter-spacing:1px;line-height:1.8;font-weight:600;max-width:80%}
+.poster-topline .project-logo{width:38px;height:38px;object-fit:contain;flex-shrink:0}
+.poster-title{position:relative;display:block;font:700 clamp(80px,8vw,125px)/1.05 Jakarta,Arial,sans-serif;letter-spacing:-8px;padding:24px 24px 0;text-align:start;z-index:1;pointer-events:none;transition:transform 650ms var(--ease)}
+.identity-lor .poster-title{font-size:clamp(110px,12vw,180px);letter-spacing:-12px;padding-top:10px}
+.poster-tagline{position:relative;padding:8px 30px 0;max-width:390px;font-size:24px;line-height:1.4;font-weight:500;letter-spacing:-.7px;z-index:1;pointer-events:none}
+html[lang=ar] .poster-tagline{font-size:22px;line-height:1.8;letter-spacing:0;max-width:400px}
+.preview-trigger{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:zoom-in;z-index:2;overflow:hidden}
+.preview-trigger:focus-visible{outline:3px solid var(--poster-ink);outline-offset:-8px;border-radius:0}
+.project-poster .project-screenshot{position:absolute;width:112%;max-width:none;height:auto;aspect-ratio:auto;top:292px;left:-6%;transform:translateX(var(--poster-x)) rotate(var(--poster-tilt));transform-origin:center;object-fit:contain;border-radius:8px;border:1px solid #16243760;box-shadow:0 30px 45px #13252d35;transition:transform 850ms var(--ease)}
+.identity-lor .project-screenshot{top:340px}
+.poster-foot{position:absolute;inset:auto 0 0;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:19px 28px;background:var(--poster);border-top:1px solid #163a3225;z-index:3;font-size:11px;font-weight:600;pointer-events:none}
+.poster-foot .icon{width:20px;height:20px;filter:none!important}
+.project-poster:hover .project-screenshot,.project-poster:focus-within .project-screenshot{transform:translateX(0) translateY(-16px) rotate(0)}
+.project-poster:hover .poster-title{transform:translateY(-4px)}
+.project-poster:hover::before{transform:rotate(-15deg) scale(1.1)}
+.identity-lor .project-poster:hover::before{transform:rotate(60deg) scale(1.1)}
+.repo-content{padding:28px 0 0;min-width:0}
+.repo-category{display:block;font:500 10px/1.8 var(--font);letter-spacing:1px;color:var(--muted);margin-bottom:10px}
+.repo-content h3{font:500 34px/1.3 Jakarta,Arial,sans-serif;letter-spacing:-1px}
+.repo-title{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;direction:ltr}
+.repo-title .icon{width:44px;height:44px;padding:12px;border:1px solid var(--line);border-radius:50%;opacity:1;transition:transform 350ms var(--ease),background 200ms}
+.repo-title:hover .icon{transform:rotate(45deg);background:var(--subtle)}
+.repo-content>.project-description{font-size:14px;line-height:1.9;max-width:48ch;margin-top:16px;color:var(--muted)}
+html[lang=ar] .repo-content>.project-description{font-size:14px;line-height:2}
+.poster-benefits{display:flex;flex-wrap:wrap;list-style:none;gap:9px 18px;margin:20px 0 0;padding:0}
+.poster-benefits li{display:flex;align-items:baseline;gap:6px;font-size:11px;line-height:1.8;color:var(--ink)}
+.poster-benefits li::before{content:'+';font:400 16px/1 Jakarta,Arial,sans-serif;color:var(--muted)}
+.repo-actions{display:flex;align-items:center;flex-wrap:wrap;gap:24px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+.repo-actions .text-link,.detail-button{font-size:12px;min-height:44px}
+.repo-actions .text-link{gap:9px}.repo-actions .text-link>.icon{width:16px;height:16px}
+.detail-button{display:inline-flex;align-items:center;gap:10px;background:transparent;padding:8px 0;color:var(--muted)}
+.detail-button .icon{width:16px;height:16px}
+html[lang=ar] .poster-topline .mono{letter-spacing:0;font-size:9px;line-height:1.9}
+html[lang=ar] .repo-content h3{letter-spacing:-1px}
+html[data-theme=dark] .project-poster{color:var(--poster-ink)}
+html[data-theme=dark] .project-poster .project-logo{filter:none}
+html[data-reveal-ready] .repo-card[data-reveal]{transition:opacity 650ms var(--ease),transform 650ms var(--ease)}
+html[data-reveal-ready] .repo-card:not(.is-visible) .poster-title{transform:translateY(28px)}
+.repo-card:focus-within{opacity:1!important;transform:none!important}
+.preview-dialog{width:min(1250px,calc(100% - 40px));max-width:none;max-height:92dvh;padding:20px;background:var(--canvas);color:var(--ink);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 100px #0004}
+.preview-dialog .dialog-heading{padding:0 0 14px;gap:20px}.preview-dialog h2{font-family:var(--font);font-size:16px;letter-spacing:0;line-height:1.8}
+#preview-content img{display:block;width:auto;max-width:100%;max-height:72dvh;object-fit:contain;margin-inline:auto;border:1px solid var(--line);border-radius:8px}
+#preview-content p{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.8}.preview-dialog::backdrop{background:#07101ee0;backdrop-filter:blur(6px)}
+.detail-features{list-style:none;margin:24px 0;padding:0;display:grid;gap:16px}.detail-features strong{font-size:14px;line-height:1.8}.detail-features p{font-size:13px;color:var(--muted);line-height:1.9;margin-top:3px}
+@supports(animation-timeline:scroll()){.reading-progress{animation:page-progress linear both;animation-timeline:scroll(root)}@keyframes page-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:1200px){.header-shell .brand img,.header-shell.is-compact .brand img{width:150px}.header-shell .header{gap:14px}.desktop-nav a{padding-inline:10px;font-size:12px}.header-actions{gap:7px}.header-shell .github-button{display:none}.project-poster{height:610px}.poster-title{font-size:95px;letter-spacing:-6px}.identity-lor .poster-title{font-size:140px}.poster-tagline{font-size:21px}.project-poster .project-screenshot{top:280px}.identity-lor .project-screenshot{top:300px}.repo-card:nth-child(even){margin-top:110px}}
+@media(max-width:960px){.project-poster{height:530px}.poster-topline{padding:20px 20px 0}.poster-topline .project-logo{width:30px;height:30px}.poster-title{font-size:75px;padding:24px 18px 0;letter-spacing:-5px}.identity-lor .poster-title{font-size:115px;letter-spacing:-8px;padding-top:12px}.poster-tagline{font-size:20px;padding:10px 22px 0}html[lang=ar] .poster-tagline{font-size:18px}.project-poster .project-screenshot{top:260px}.identity-lor .project-screenshot{top:276px}.poster-foot{padding:17px 20px;font-size:10px}.repo-content h3{font-size:30px}.section-heading>p,.projects .section-heading>p{max-width:310px;font-size:14px}.work-controls{align-items:flex-start;flex-wrap:wrap}.explorer-toolbar{max-width:none}.header-shell .header{gap:10px}.desktop-nav a{font-size:11px;padding-inline:8px}.repo-actions{gap:16px}.repo-card:nth-child(even){margin-top:86px}}
+@media(max-width:720px){
+ .header-shell .header,.header-shell.is-compact .header{min-height:68px;padding:8px 0;width:calc(100% - 32px);border-radius:16px}.header-shell.is-compact .header{padding-inline:10px}.header-shell .brand img,.header-shell.is-compact .brand img{width:128px}.header-actions{gap:5px}.header-shell .search-trigger{display:none}.language{min-width:65px;min-height:44px;font-size:11px;padding-inline:9px}
+ .hero-description,html[lang=ar] .hero-description{font-size:14px;line-height:1.95;max-width:92vw}html[lang=ar] .studio-hero h1{font-size:clamp(37px,7.4vw,54px);line-height:1.75}.hero-actions .button,.hero-secondary{font-size:12px}
+ .work-controls{display:flex;gap:16px;padding-block:12px;margin-top:28px}.project-filters{margin:0;gap:24px}.project-filters button{font-size:12px}.explorer-toolbar{width:100%;flex:auto;flex-wrap:wrap;gap:12px}.search-field{min-width:160px;max-width:none;flex-basis:100%}.search-field input{font-size:14px}.select-field{padding:0;flex:1;min-width:110px}.select-field select{font-size:12px;max-width:100%}.select-field label{font-size:11px}
+ .repository-list{grid-template-columns:1fr;gap:54px}.repo-card:nth-child(even){margin-top:0}.project-poster{height:520px}.poster-title{font-size:clamp(80px,19vw,120px);letter-spacing:-5px;padding-top:20px}.identity-lor .poster-title{font-size:clamp(115px,28vw,165px);letter-spacing:-8px}.poster-tagline{font-size:23px;max-width:360px}html[lang=ar] .poster-tagline{font-size:21px}.project-poster .project-screenshot{top:250px}.identity-lor .project-screenshot{top:270px}.poster-topline .mono{font-size:9px}.poster-topline .project-logo{width:34px;height:34px}.poster-foot{font-size:11px;padding:18px 22px}.repo-content{padding-top:22px}.repo-content h3{font-size:32px}.repo-actions{gap:24px}.repo-content>.project-description,html[lang=ar] .repo-content>.project-description{font-size:14px;max-width:none}
+ .section-heading>p,.projects .section-heading>p{max-width:100%;font-size:15px}html[lang=ar] .section-heading h2{font-size:34px;line-height:1.65}html[lang=ar] .journal-card h3,html[lang=ar] .journal-card:first-child h3{font-size:25px;line-height:1.7}html[lang=ar] .closing h2{font-size:36px;line-height:1.6;letter-spacing:0}.principles p,.about-description,.journal-card p,.contribution-invitation>p:not(.eyebrow),.closing .closing-description{font-size:14px}.data-state{font-size:10px;max-width:240px}.preview-dialog{width:calc(100% - 20px);padding:14px}.preview-dialog h2{font-size:13px}#preview-content p{font-size:11px}
+}
+@media(max-width:380px){.header-shell .brand img,.header-shell.is-compact .brand img{width:105px}.header-actions{gap:3px}.language{min-width:62px}.project-poster{height:470px}.poster-title{font-size:78px}.identity-lor .poster-title{font-size:120px}.poster-tagline,html[lang=ar] .poster-tagline{font-size:19px}.project-poster .project-screenshot{top:235px}.identity-lor .project-screenshot{top:250px}}
+@media(hover:none),(pointer:coarse){.project-poster:hover .project-screenshot,.project-poster:focus-within .project-screenshot{transform:translateX(var(--poster-x)) rotate(var(--poster-tilt))}.project-poster:hover .poster-title{transform:none}}
+@media(prefers-reduced-motion:reduce){.project-poster .project-screenshot,.project-poster:hover .project-screenshot,.project-poster:focus-within .project-screenshot{transform:none}.project-poster:hover .poster-title{transform:none}}
+html[data-motion=off] .project-poster .project-screenshot,html[data-motion=off] .project-poster:hover .project-screenshot{transform:none}
+
+/* Dedicated section pages share the homepage's content and visual language. */
+.page-back{padding-top:26px}
+.page-back .text-link{color:var(--muted);font-size:12px;gap:10px}
+html[dir=rtl] .page-back .icon{transform:scaleX(-1)}
+.projects-archive{padding-block:32px 90px}
+.projects-page .projects .section-heading h1{font-size:clamp(48px,5.4vw,78px);line-height:1.12;letter-spacing:-3px;font-weight:500}
+html[lang=ar] .projects-page .projects .section-heading h1{font-size:clamp(38px,4.4vw,62px);line-height:1.6;letter-spacing:0}
+.section-page .section-page-link{display:none}
+.section-page-link{margin-top:26px}
+.projects>.section-page-link{display:flex;justify-content:flex-end}
+.about-inner>.section-page-link{grid-column:1/-1}
+.section-page-link .text-link{font-size:13px;color:var(--accent-text);gap:12px}
+.about-page .about-inner{padding-top:36px}
+.about-page .about-inner h1{font-size:clamp(42px,4.8vw,68px);line-height:1.2;letter-spacing:-2px;font-weight:500}
+html[lang=ar] .about-page .about-inner h1{font-size:clamp(35px,4vw,54px);line-height:1.65;letter-spacing:0}
+.contribute-page .contribute{padding-top:40px}
+.contribute-page .contribute h1{font-size:clamp(44px,5.4vw,74px);line-height:1.2;letter-spacing:-2px;font-weight:500}
+html[lang=ar] .contribute-page .contribute h1{font-size:clamp(36px,4.7vw,62px);line-height:1.65;letter-spacing:0}
+@media(max-width:720px){.page-back{padding-top:16px}.projects-archive{padding-block:22px 60px}.projects-page .projects .section-heading h1{font-size:44px;letter-spacing:-2px}html[lang=ar] .projects-page .projects .section-heading h1{font-size:35px}.about-page .about-inner{padding-top:24px}.about-page .about-inner h1{font-size:39px}html[lang=ar] .about-page .about-inner h1{font-size:34px}.contribute-page .contribute{padding-top:24px}.contribute-page .contribute h1{font-size:42px}html[lang=ar] .contribute-page .contribute h1{font-size:34px}}

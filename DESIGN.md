@@ -162,3 +162,16 @@ theme.js يُحمّل في الرأس قبل التنسيق لتطبيق الا�
 المراجع: [Arc UI: Site Footer](https://uiarc.dev/components/blocks/site-footer) لاستلهام مجموعات التنقل الواضحة ونهاية الصفحة الهادئة، و[MDN: mask-image](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image) لتنفيذ الأقنعة الأصلية. لم يُنسخ مكون أو تصميم جاهز، ولم تُضف مكتبة. ما زالت تفضيلات تقليل الحركة وإيقافها سارية على التفاعلات الجديدة.
 
 التحقق لهذه المراجعة: نجح 21 اختبار Node والبناء. اجتازت 60 حالة متصفح و4696 عينة نصية محسوبة، بأدنى تباين للنص العادي 5.61:1. شملت الإضافات اختبار التنقل من روابط الفوتر، وحفظ لغة دليل المساهمة، وعدم اعتراض الضباب للتفاعل أو تجاوزه حد الشفافية، وفحص التجاوز الأفقي في النهاية. فتح دليل المساهمة من الرابط الجديد بالعربية بنجاح، وروجعت النهاية بصريًا نهارًا وليلًا وعلى الهاتف. التقرير: artifacts/quiet-journey-audit.json. الحسابات لا تقيس كل بكسل من الأقنعة الزخرفية؛ لم تُختبر أجهزة فعلية ولم يتم النشر.
+
+
+## 2026-10-23: bold project posters
+
+The final direction chosen by the owner is bold posters with strong color and clearer motion. The gallery uses two independent compositions in a staggered grid, with unmodified logos, oversized live project names, original CSS geometry, and real interface captures. ZipZap uses lime with dark green type; LOR. uses lilac with plum type and a pink shape. Posters keep their colors in either site theme. On mobile they form one vertical sequence.
+
+The poster itself opens a large native image dialog. The caption links to the product, source and project details. Three short benefits summarize each product; expanded explanations, repository metrics and clone instructions remain in the details dialog. Platform filters, search and sorting operate on the same selected project collection.
+
+Hover and focus straighten and lift the screenshot; entrance motion follows visibility. Motion uses transforms and opacity, honors pause and reduced motion, and does not intercept scrolling. There is no automatic rotation, WebGL, video, pointer tracking or new runtime dependency.
+
+References: [Studio Dumbar work](https://studiodumbar.com/work) for graphic work presentation, [PORTO ROCHA](https://www.portorocha.com/) for color-led identities and typographic hierarchy. These are direction references; their assets and implementations are not copied.
+
+Typography uses local variable Alexandria for Arabic and Plus Jakarta Sans for Latin. Both translations are generated into HTML. A small head bootstrap applies language and direction before styles, so delayed application modules do not expose English copy on Arabic pages.

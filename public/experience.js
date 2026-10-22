@@ -46,6 +46,7 @@ export function initHeader() {
     highlight.setAttribute('aria-hidden', 'true');
     nav.prepend(highlight);
     let current = links.find(link => link.hasAttribute('aria-current'));
+    let activeId;
     const show = link => {
       highlight.style.opacity = link ? '1' : '0';
       if (!link) return;
@@ -58,29 +59,39 @@ export function initHeader() {
     });
     nav.addEventListener('pointerleave', () => show(current));
     nav.addEventListener('focusout', event => { if (!nav.contains(event.relatedTarget)) show(current); });
-    const sections = links.map(link => {
+    const sections = chapters.length ? chapters.map(link => document.getElementById(link.dataset.chapter)).filter(Boolean) : links.map(link => {
       const url = new URL(link.href);
       return url.pathname === location.pathname && url.hash ? document.getElementById(url.hash.slice(1)) : null;
     }).filter(Boolean);
     if (sections.length) updateCurrentSection = () => {
       const line = window.innerHeight * .3;
       const active = sections.find(section => { const rect = section.getBoundingClientRect(); return rect.top <= line && rect.bottom > line; });
+      if (activeId === (active?.id || '')) return;
+      activeId = active?.id || '';
       current = active ? links.find(link => new URL(link.href).hash === '#' + active.id) : undefined;
       links.forEach(link => link === current ? link.setAttribute('aria-current', 'location') : link.removeAttribute('aria-current'));
+      for (const link of shell.querySelectorAll('.mobile-nav nav a')) {
+        if (new URL(link.href).hash === '#' + activeId) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
       chapters.forEach(link => link.dataset.chapter === active?.id ? link.setAttribute('aria-current', 'location') : link.removeAttribute('aria-current'));
       show(current);
     };
     new ResizeObserver(() => show(current)).observe(nav);
+    document.addEventListener('languagechange', () => requestAnimationFrame(() => show(current)));
     new MutationObserver(() => show(current)).observe(document.documentElement, {attributes: true, attributeFilter: ['dir']});
     show(current);
   }
   let compact = false, frame = 0;
+  const nativeProgress = CSS.supports('animation-timeline: scroll()');
   const update = () => {
     updateCurrentSection();
     compact = compactHeader(window.scrollY, compact);
     shell.classList.toggle('is-compact', compact);
-    const distance = document.documentElement.scrollHeight - window.innerHeight;
-    document.documentElement.style.setProperty('--page-progress', distance > 0 ? Math.min(1, window.scrollY / distance) : 0);
+    if (!nativeProgress) {
+      const distance = document.documentElement.scrollHeight - window.innerHeight;
+      document.documentElement.style.setProperty('--page-progress', distance > 0 ? Math.min(1, window.scrollY / distance) : 0);
+    }
     frame = 0;
   };
   window.addEventListener('scroll', () => {
