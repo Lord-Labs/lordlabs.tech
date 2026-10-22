@@ -14,9 +14,13 @@ Interface SVGs in `public/assets/icons/`, excluding `github.svg`, come from [luc
 
 ## Fonts
 
+The current interface uses self-hosted variable [Alexandria](https://fonts.google.com/specimen/Alexandria) (Arabic subset, 31,348 bytes) and [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) (Latin subset, 27,348 bytes). Files were retrieved from Google Fonts on 2026-10-23; SIL Open Font License notices are retained in `licenses/alexandria.txt` and `licenses/plus-jakarta-sans.txt`. The selected language's primary font is preloaded. Earlier font assets below are retained for compatibility.
+
 Self-hosted WOFF2 files come from Google Fonts: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk), [Manrope](https://fonts.google.com/specimen/Manrope), and [Noto Sans Arabic](https://fonts.google.com/noto/specimen/Noto+Sans+Arabic). Each uses SIL Open Font License 1.1; notices are in `licenses/`.
 
 ## Design references
+
+The current project gallery uses original CSS poster compositions informed by the visual hierarchy, bold type and color-led work presentation of [Studio Dumbar](https://studiodumbar.com/work) and [PORTO ROCHA](https://www.portorocha.com/). Their artwork, logos, video and source code are not bundled. Each poster presents LORD Labs' selected projects using the original project logo and real product capture credited below. [web.dev's animation guidance](https://web.dev/articles/animations-and-performance) and [W3C internationalization guidance](https://www.w3.org/International/quicktips/) informed motion and language behavior.
 
 [Arc UI Tabs](https://uiarc.dev/components/tabs) and its [free registry source](https://uiarc.dev/r/tabs.json) informed the adapted native selection pill and directional panel transition. The MIT notice is retained in `licenses/arc-ui.txt`. [Arc UI motion](https://uiarc.dev/docs/motion), [buttons](https://uiarc.dev/components/button), and command palette informed interaction principles. The public previews and descriptions of [Morph Nav](https://uiarc.dev/components/morph-nav) and [Mega Menu Morph](https://uiarc.dev/components/mega-menu-morph) informed an independently written shared navigation highlight, compact header and mobile focus behavior. No paid source code, React, Radix, Motion, Arc runtime or Magic UI package is bundled. [Linear](https://linear.app/) and [Raycast](https://www.raycast.com/) are visual references for hierarchy, product presentation and controlled light on dark surfaces. Their branding and artwork are not used. Full design references are in `DESIGN.md`.
 

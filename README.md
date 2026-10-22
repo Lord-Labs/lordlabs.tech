@@ -17,11 +17,17 @@ npm run preview
 
 `npm run dev` and `npm run build` generate the journal pages, homepage fallbacks, and sitemap from local content. Build does not require a network connection. Source is in `public/`; deployable output is in `dist/`.
 
+## Section pages
+
+The main navigation links to `/projects/`, `/journal/`, `/about/` and `/contribute/`. The homepage retains its four chapter previews and adds links to each full section. Its chapter rail still scrolls within the homepage.
+
+`npm run dev` and `npm run build` generate the section pages from the same homepage sections, project selection and article data. Edit the shared source in `public/index.html`, `public/projects.js`, `public/ar.js` and `public/journal.js`; generated section HTML is not an independent content source. The projects page reuses the gallery search, filters, source details, image preview and command search. Every page preserves language in internal links and marks the current section in desktop and mobile navigation.
+
 ## Select projects
 
 Edit **`public/projects.js`**. This is the explicit editorial selection and display order. New public repositories do not appear automatically. The current selection is **ZipZap** and **LOR.**; the supplied Lord-shaban URL now redirects to its canonical repository under Lord-Labs.
 
-Each entry defines the repository, unique slug, platform (`desktop` or `web`), identity class, bilingual context, original logo, product capture, website and contextual note. Add visual identity rules in `public/journey.css`. Keep supplied project logos intact. The gallery, platform filters, search and live metadata share the same explicit selection.
+Each entry defines the repository, unique slug, platform (`desktop` or `web`), identity class, bilingual context, original logo, product capture, website and contextual note. Add poster identity and responsive rules in `public/refinements.css`. Each project also supplies three bilingual benefits shown on the poster caption and explained in its details dialog. Keep supplied project logos intact. The gallery, platform filters, search and live metadata share the same explicit selection. The current gallery is a staggered pair of bold graphic posters: lime for ZipZap, lilac and pink for LOR. Both projects remain visible and discoverable. Clicking a poster opens its real interface in a native preview dialog; Escape closes it and returns focus. Hover and keyboard focus move the screenshot within the poster, with reduced-motion and pause support.
 
 Only the selected public, active, original repositories belonging to Lord-Labs are fetched, by individual repository endpoint. An unexpected response or unavailable API keeps the saved copy visible with an explicit status. Search, command navigation, update dates and counts all use the same selected collection. No token is used.
 
@@ -33,7 +39,7 @@ Edit **`public/journal.js`**. Each article has a unique lowercase slug, date, ap
 
 Run `npm run build` (or restart `npm run dev`) after edits. `scripts/content.mjs` generates `/journal/`, each `/journal/<slug>/` article, homepage previews and sitemap entries. Generated HTML lives in `public/journal/`; edit the content source rather than generated files.
 
-The three initial notes are newly prepared editorial starter content about design, curation and contribution. They are not imported historical posts. Review and adapt them before publishing. Article pages include complete content without JavaScript; JavaScript adds Arabic switching, persistent language and localized links. The initial document language is English when JavaScript is disabled.
+The three initial notes are newly prepared editorial starter content about design, curation and contribution. They are not imported historical posts. Review and adapt them before publishing. Article pages include complete content without JavaScript; JavaScript adds Arabic switching, persistent language and localized links. Both translations ship in HTML. `locale.js` resolves the URL language, then the saved preference, before styles paint; CSS selects the matching text without waiting for application modules. Native option labels and placeholders are localized during parsing. The document defaults to English when all JavaScript is disabled.
 
 ## Interaction and motion
 
@@ -53,12 +59,12 @@ Ctrl/Cmd K searches sections, selected projects and article titles. Arrow keys n
 
 | File | Purpose |
 | --- | --- |
-| `public/index.html`, `public/ar.js` | Homepage structure and UI copy |
+| `public/index.html`, `public/ar.js`, `public/locale.js`, `scripts/localize.mjs` | Homepage structure, bilingual first-paint text and language bootstrap |
 | `public/projects.js` | Explicit project selection and independent identities |
 | `public/journal.js` | Bilingual article source |
 | `scripts/content.mjs` | Static journal/fallback/sitemap generation |
 | `public/app.js`, `public/reading.js`, `public/experience.js` | Homepage, reading, and shared compact navigation |
-| `public/style.css`, `public/journey.css`, `public/sky.css` | Shared foundation, layouts and atmospheric day/night system |
+| `public/style.css`, `public/journey.css`, `public/sky.css`, `public/refinements.css` | Shared foundation, layouts and atmospheric day/night system |
 | `public/repositories.js` | Selected project metadata validation and loading |
 | `public/theme.js`, `public/hero.js`, `public/assets/atmosphere/` | Theme bootstrap, controls, cloud horizons and offscreen motion pause |
 | `public/assets/tech/` | Locally hosted technology marks from Simple Icons |
@@ -69,7 +75,7 @@ Ctrl/Cmd K searches sections, selected projects and article titles. Arrow keys n
 
 For Cloudflare Pages: framework **None**, build `npm run build`, output `dist`, Node 22. Use the folder containing package.json as the project root. The output includes `_headers` and static journal routes.
 
-This version is local. Deployable files are generated in `dist/`.
+Production is hosted at [lordlabs.tech](https://lordlabs.tech/) through Cloudflare Pages. Pushes to `main` trigger deployment; deployable files are generated in `dist/`.
 
 For local visual checks, open `/__qa.html` and run the layout/interaction audit. The review page is excluded from `dist/`.
 

@@ -1,9 +1,7 @@
 import { initHeader } from "./experience.js";
 initHeader();
 try { if (localStorage.getItem('lordlabs-motion') === 'paused') document.documentElement.dataset.motion = 'off'; } catch { /* Preferences are optional. */ }
-let language='en';
-try{if(localStorage.getItem('lordlabs-language')==='ar')language='ar';}catch{/* Storage is optional. */}
-const requested=new URLSearchParams(location.search).get('lang');if(requested==='ar'||requested==='en')language=requested;
+let language=document.documentElement.lang;
 function setLanguage(next){
   language=next;document.documentElement.lang=next;document.documentElement.dir=next==='ar'?'rtl':'ltr';
   const languageUrl=new URL(location.href);languageUrl.searchParams.set('lang',next);languageUrl.hash=languageUrl.hash.replace(/^#section-(en|ar)-/,`#section-${next}-`);history.replaceState(null,'',languageUrl);
@@ -13,7 +11,8 @@ function setLanguage(next){
   for(const link of document.querySelectorAll('[data-local-language]')){const url=new URL(link.href,location.href);url.searchParams.set('lang',next);link.href=url.href;}
   document.querySelector('.mobile-nav summary').setAttribute('aria-label',next==='ar'?'قائمة التنقل':'Navigation menu');
   document.querySelector('.mobile-nav nav').setAttribute('aria-label',next==='ar'?'قائمة التنقل':'Navigation menu');
-  const title=document.querySelector('h1');if(title)document.title=`${title.textContent} — LORD Labs`;
+  const title=document.querySelector('h1');if(title)document.title=`${title.innerText} — LORD Labs`;
+  document.dispatchEvent(new Event('languagechange'));
   try{localStorage.setItem('lordlabs-language',next);}catch{/* Storage is optional. */}
 }
 document.querySelector('#reading-language').addEventListener('click',()=>setLanguage(language==='en'?'ar':'en'));
