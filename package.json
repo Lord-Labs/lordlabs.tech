@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/serve.mjs",
+    "dev": "node scripts/content.mjs && node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
     "preview": "node scripts/serve.mjs dist",
-    "test": "node --test"
+    "test": "node --test",
+    "snapshot": "node scripts/snapshot.mjs"
   },
   "engines": {
     "node": ">=22"

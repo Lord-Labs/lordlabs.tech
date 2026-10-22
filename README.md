@@ -1,93 +1,78 @@
-# LORD Labs
+# LORD Labs — a journey through the lab
 
-The home of **[LORD Labs](https://github.com/Lord-Labs)** — independent software, open ideas, and thoughtful digital products.
+The public home of [LORD Labs](https://github.com/Lord-Labs): a selected project gallery and bilingual journal, built with HTML, CSS and JavaScript. No framework, account system, tracking, package install, or server runtime is required.
 
-Designed for **https://lordlabs.tech/**. Built with HTML, CSS, and JavaScript. No framework, package install, tracking, or server runtime required. English and Arabic, responsive layouts, self-hosted fonts, keyboard navigation, and reduced-motion support are included.
+## Run
 
-## Local development
-
-Requires Node.js 22 or later.
+Node.js 22 or later:
 
 ```sh
 npm run dev
 # http://127.0.0.1:4173
 npm test
+npm run snapshot
 npm run build
 npm run preview
 ```
 
-The complete deployable site is generated in `dist/`. Source lives in `public/`.
+`npm run dev` and `npm run build` generate the journal pages, homepage fallbacks, and sitemap from local content. Build does not require a network connection. Source is in `public/`; deployable output is in `dist/`.
 
-## Cloudflare Pages
+## Select projects
 
-1. Open **Workers & Pages → Create application → Pages → Import an existing Git repository**.
-2. Connect **Lord-Labs/lordlabs.tech**. Authorize this repository in the organization if Cloudflare cannot see it.
-3. Use these settings:
+Edit **`public/projects.js`**. This is the explicit editorial selection and display order. New public repositories do not appear automatically. The current selection is **ZipZap** and **LOR.**; the supplied Lord-shaban URL now redirects to its canonical repository under Lord-Labs.
 
-| Setting                | Value                                  |
-| ---------------------- | -------------------------------------- |
-| Framework preset       | None                                   |
-| Production branch      | `main`                                 |
-| Root directory         | Leave blank                            |
-| Build command          | `npm run build`                        |
-| Build output directory | `dist`                                 |
-| Node version           | `22` (set `NODE_VERSION` if necessary) |
+Each entry defines the repository, unique slug, platform (`desktop` or `web`), identity class, bilingual context, original logo, product capture, website and contextual note. Add visual identity rules in `public/journey.css`. Keep supplied project logos intact. The gallery, platform filters, search and live metadata share the same explicit selection.
 
-4. Deploy, then check the provided `*.pages.dev` URL.
-5. In **Custom domains → Set up a domain**, add `lordlabs.tech`.
+Only the selected public, active, original repositories belonging to Lord-Labs are fetched, by individual repository endpoint. An unexpected response or unavailable API keeps the saved copy visible with an explicit status. Search, command navigation, update dates and counts all use the same selected collection. No token is used.
 
-Every push to `main` deploys automatically after connecting the repository. Cloudflare reads `public/_headers` from the built output and applies its security headers.
+Run `npm run snapshot` after changing the selection to update the saved metadata in `public/data/repositories.json`. The build itself does not fetch GitHub. Remote descriptions are rendered as plain text; repository URLs are constructed for the verified organization. A selected project does not need a public release to be shown.
 
-### ربط الدومين من Name.com
+## Write in the journal
 
-لربط `lordlabs.tech` نفسه (الدومين الرئيسي) بـCloudflare Pages:
+Edit **`public/journal.js`**. Each article has a unique lowercase slug, date, approximate reading time, cover image, and complete English/Arabic copy. Content consists of an introduction, named sections with paragraphs, a takeaway, and optional further-reading links.
 
-1. أضف الدومين إلى حسابك في Cloudflare، وراجع سجلات DNS التي تم استيرادها، خصوصًا سجلات البريد إن وجدت.
-2. انسخ الـnameservers التي يحددها Cloudflare لهذا الدومين بالضبط.
-3. من Name.com، افتح الدومين ثم **Nameservers** واستبدل القيم الحالية بالقيم التي أعطاها Cloudflare. لا تحتاج إلى نقل ملكية الدومين من Name.com.
-4. انتظر تفعيل الـzone داخل Cloudflare، ثم أضف الدومين من صفحة **Custom domains** الخاصة بمشروع Pages. سيضيف Cloudflare سجل الربط ويصدر شهادة HTTPS.
-5. اختياريًا أضف `www.lordlabs.tech` كدومين إضافي وأنشئ تحويلًا إلى الدومين الرئيسي.
+Run `npm run build` (or restart `npm run dev`) after edits. `scripts/content.mjs` generates `/journal/`, each `/journal/<slug>/` article, homepage previews and sitemap entries. Generated HTML lives in `public/journal/`; edit the content source rather than generated files.
 
-لا تنشئ سجلًا يشير إلى رابط GitHub. لا تضع أي API token في كود الموقع أو المستودع. راجع إعداد DNSSEC قبل تغيير الـnameservers إذا كان مفعّلًا لدى المسجّل.
+The three initial notes are newly prepared editorial starter content about design, curation and contribution. They are not imported historical posts. Review and adapt them before publishing. Article pages include complete content without JavaScript; JavaScript adds Arabic switching, persistent language and localized links. The initial document language is English when JavaScript is disabled.
 
-**الحالة عند التسليم:** الكود مرفوع على GitHub. النشر في حساب Cloudflare وتغيير DNS لم ينفذا، ولم يتم التحقق من عمل الدومين بالموقع الجديد.
+## Interaction and motion
 
-## Updating projects
+A full-width light opening shares its surface with the header. Centered live typography sits above matching original daytime and moonlit cloud horizons, with slow transform-only drift. A shared day/night control crossfades the sky, light veils and original logo variants. The two local WebPs total 107,810 bytes; there is no runtime drawing loop. Projects remain in their dedicated chapter, followed by the lab, journal, contribution paths and final invitation.
 
-The initial project is this website. On each visit, the site reads all public, non-fork, non-archived repositories from the **Lord-Labs** organization using the public GitHub API, including pagination. It never needs a token and never reads private repositories. New projects appear automatically after you publish them.
+The palette uses pearl surfaces, high-contrast slate text, muted blue controls, and a restrained clay accent. The photographic skies appear only in the hero and dissolve into one continuous page background. Transparent sections share a very faint native gradient, with no repeated cloud images or blurred content panels. Night mode uses a quiet slate/navy palette, soft blue controls and warm headline detail. Backdrop blur is confined to compact navigation and dialog overlays. Color roles and source references are documented in `DESIGN.md`. The local review page checks computed text contrast, including inherited opacity and translucent backgrounds, alongside the responsive and interaction checks. It is not a full accessibility certification.
 
-Repository descriptions are displayed as plain text, and links are constructed only for the verified organization. If GitHub is unavailable or rate-limited, the static website project remains visible with a **Repository snapshot** status. The initial website card is curated in `public/index.html`; update it if you rename this repository. English repository descriptions retain their source language in the Arabic view.
+The platform selector supports arrow keys, Home and End in both reading directions. A chapter rail tracks desktop navigation, and a thin progress line follows the page. The journal features one lead essay, two secondary stories, publication dates, and consistent archive/article layouts. Article contents highlight the current section; language stays attached to reading links. Same-origin page changes use progressive CSS view transitions where supported.
 
-## Editing content and identity
+The theme follows the system preference until the visitor chooses a mode. `theme.js` applies the saved preference in the head before styles render, synchronizes both controls and other tabs, and retains the choice across reading pages. Entrance motion runs once, finishes when leaving the hero, and stays static under reduced motion or a paused preference.
 
-- Main page and English copy: `public/index.html`
-- Arabic translations: `public/ar.js`; language switching and interactions: `public/app.js`
-- Design tokens and responsive layout: `public/style.css`
-- GitHub repository validation and fetching: `public/repositories.js`
-- Original supplied brand assets: `public/assets/brand/`
-- Domain metadata: `index.html`, `robots.txt`, and `sitemap.xml`
-- Contribution links: point to this site's Issues and contribution guide.
+The header becomes a smaller glass navigation surface after scrolling, with a stable layout and a separate return threshold. A shared highlight follows hover, keyboard focus and the current section. Mobile navigation closes on Escape, outside press or focus leaving. Motion can be paused, respects system reduced motion, and idles when the hero or page is hidden. Touch devices avoid header backdrop blur. There is no canvas loop, video, WebGL, scroll hijacking or custom cursor. Background metadata refreshes preserve focus within project cards.
 
-Brand colors: Carbon `#171B22`, Contributor `#D94E26`, Canvas `#F5F2EA`. Small orange text uses a darker accessible shade (`#B83D1B`). The supplied wordmark is used as vector paths. The isometric Patchwork artwork is an original website illustration, distinct from the unchanged brand logo.
+Ctrl/Cmd K searches sections, selected projects and article titles. Arrow keys navigate results; Enter follows a result; Escape closes. `/` focuses project search. Native dialogs and disclosures provide focus management and keyboard behavior.
 
-The updated design combines a Carbon hero, warm Canvas sections, an interactive ceramic Patchwork assembly, a browser-style project showcase, illustrated contribution cards, and an orange closing invitation. The assembly supports keyboard operation and a reduced-motion preference. Repository links can be copied with visible success/failure feedback. The layout supports Arabic RTL and widths down to 320px.
+## Files
 
-Studio artwork is generated by `scripts/patchwork-art.mjs`, exported to `public/assets/patchwork-studio.svg`, and embedded in `index.html` for the assembly interaction. When changing the sculpture, keep its embedded version and exported asset synchronized. `scripts/prepare-assets.mjs` regenerates the export alongside the fonts and icons.
+| File | Purpose |
+| --- | --- |
+| `public/index.html`, `public/ar.js` | Homepage structure and UI copy |
+| `public/projects.js` | Explicit project selection and independent identities |
+| `public/journal.js` | Bilingual article source |
+| `scripts/content.mjs` | Static journal/fallback/sitemap generation |
+| `public/app.js`, `public/reading.js`, `public/experience.js` | Homepage, reading, and shared compact navigation |
+| `public/style.css`, `public/journey.css`, `public/sky.css` | Shared foundation, layouts and atmospheric day/night system |
+| `public/repositories.js` | Selected project metadata validation and loading |
+| `public/theme.js`, `public/hero.js`, `public/assets/atmosphere/` | Theme bootstrap, controls, cloud horizons and offscreen motion pause |
+| `public/assets/tech/` | Locally hosted technology marks from Simple Icons |
+| `public/assets/projects/` | Original ZipZap and LOR. identities and product captures |
+| `DESIGN.md`, `IDEAS.md` | Decisions, references and next steps |
 
-## Design references and asset sources
+## Deployment
 
-- [Figma: web design trends for 2026](https://www.figma.com/resource-library/web-design-trends/) — expressive typography and deliberate interaction.
-- [Linear](https://linear.app/) — restrained product storytelling and hierarchy.
-- [Raycast](https://www.raycast.com/) — developer-focused clarity and interaction details.
-- [Resend](https://resend.com/) — focused product presentation and confident typography.
-- [Oxide](https://oxide.computer/) — engineering detail and a distinctive technical visual language.
-- [GitHub Brand Toolkit](https://brand.github.com/foundations/logo) — the current official Invertocat, used unmodified as a link to GitHub.
-- [Lucide](https://lucide.dev/) — SVG interface icons, pinned to `1.60.0`.
-- [Google Fonts](https://fonts.google.com/) — Space Grotesk, Manrope, Noto Sans Arabic, self-hosted under the SIL Open Font License.
-- [Cloudflare static HTML guide](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/), [custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/).
+For Cloudflare Pages: framework **None**, build `npm run build`, output `dist`, Node 22. Use the folder containing package.json as the project root. The output includes `_headers` and static journal routes.
 
-No stock images or generated photography. The brand’s modular shape is the visual centerpiece. Third-party notices and licenses are in `THIRD_PARTY.md` and `licenses/`.
+This version is local. Deployable files are generated in `dist/`.
+
+For local visual checks, open `/__qa.html` and run the layout/interaction audit. The review page is excluded from `dist/`.
 
 ## License
 
-Website source code: MIT. LORD Labs names, logos, and supplied brand artwork are reserved to their owner; third-party trademarks and assets retain their respective licenses. See `LICENSE` and `THIRD_PARTY.md`.
+Website source: MIT. Supplied identity and project trademarks remain their owners' property. See `THIRD_PARTY.md` and `licenses/`.

@@ -1,0 +1,593 @@
+{
+  "status": "PASS",
+  "cases": 30,
+  "contrast": [
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 320,
+      "checked": 149,
+      "weakest": {
+        "text": "THE NEXT GOOD IDEA COULD BE YOURS.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 375,
+      "checked": 149,
+      "weakest": {
+        "text": "THE NEXT GOOD IDEA COULD BE YOURS.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 768,
+      "checked": 148,
+      "weakest": {
+        "text": "THE NEXT GOOD IDEA COULD BE YOURS.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1024,
+      "checked": 151,
+      "weakest": {
+        "text": "THE NEXT GOOD IDEA COULD BE YOURS.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1440,
+      "checked": 156,
+      "weakest": {
+        "text": "THE NEXT GOOD IDEA COULD BE YOURS.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 320,
+      "checked": 149,
+      "weakest": {
+        "text": "ربما تكون الفكرة القادمة فكرتك.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 375,
+      "checked": 149,
+      "weakest": {
+        "text": "ربما تكون الفكرة القادمة فكرتك.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 768,
+      "checked": 148,
+      "weakest": {
+        "text": "ربما تكون الفكرة القادمة فكرتك.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1024,
+      "checked": 151,
+      "weakest": {
+        "text": "ربما تكون الفكرة القادمة فكرتك.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1440,
+      "checked": 156,
+      "weakest": {
+        "text": "ربما تكون الفكرة القادمة فكرتك.",
+        "class": "eyebrow"
+      },
+      "normalMinimum": 5.14,
+      "largeMinimum": 5.43,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 320,
+      "checked": 29,
+      "weakest": {
+        "text": "How a shared visual language leaves room for every project to be itsel",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 375,
+      "checked": 29,
+      "weakest": {
+        "text": "How a shared visual language leaves room for every project to be itsel",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 768,
+      "checked": 30,
+      "weakest": {
+        "text": "How a shared visual language leaves room for every project to be itsel",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1024,
+      "checked": 30,
+      "weakest": {
+        "text": "How a shared visual language leaves room for every project to be itsel",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1440,
+      "checked": 30,
+      "weakest": {
+        "text": "How a shared visual language leaves room for every project to be itsel",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 320,
+      "checked": 29,
+      "weakest": {
+        "text": "كيف تمنح اللغة البصرية المشتركة كل مشروع مساحة ليحتفظ بشخصيته؟",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 375,
+      "checked": 29,
+      "weakest": {
+        "text": "كيف تمنح اللغة البصرية المشتركة كل مشروع مساحة ليحتفظ بشخصيته؟",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 768,
+      "checked": 30,
+      "weakest": {
+        "text": "كيف تمنح اللغة البصرية المشتركة كل مشروع مساحة ليحتفظ بشخصيته؟",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1024,
+      "checked": 30,
+      "weakest": {
+        "text": "كيف تمنح اللغة البصرية المشتركة كل مشروع مساحة ليحتفظ بشخصيته؟",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1440,
+      "checked": 30,
+      "weakest": {
+        "text": "كيف تمنح اللغة البصرية المشتركة كل مشروع مساحة ليحتفظ بشخصيته؟",
+        "class": ""
+      },
+      "normalMinimum": 5.58,
+      "largeMinimum": 12.7,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 320,
+      "checked": 37,
+      "weakest": {
+        "text": "DESIGN NOTES",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 375,
+      "checked": 37,
+      "weakest": {
+        "text": "DESIGN NOTES",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 768,
+      "checked": 38,
+      "weakest": {
+        "text": "DESIGN NOTES",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1024,
+      "checked": 38,
+      "weakest": {
+        "text": "DESIGN NOTES",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1440,
+      "checked": 38,
+      "weakest": {
+        "text": "DESIGN NOTES",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 320,
+      "checked": 37,
+      "weakest": {
+        "text": "ملاحظات التصميم",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 375,
+      "checked": 37,
+      "weakest": {
+        "text": "ملاحظات التصميم",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 768,
+      "checked": 38,
+      "weakest": {
+        "text": "ملاحظات التصميم",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1024,
+      "checked": 38,
+      "weakest": {
+        "text": "ملاحظات التصميم",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1440,
+      "checked": 38,
+      "weakest": {
+        "text": "ملاحظات التصميم",
+        "class": ""
+      },
+      "normalMinimum": 5.89,
+      "largeMinimum": 13.39,
+      "failures": []
+    }
+  ],
+  "checks": [
+    "rendered text contrast",
+    "full-bleed hero",
+    "original assets",
+    "language",
+    "no horizontal overflow",
+    "filter keyboard",
+    "search + reset",
+    "details + focus",
+    "command search",
+    "motion pause",
+    "mobile menu",
+    "accordion",
+    "journal language links"
+  ],
+  "results": [
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    }
+  ]
+}

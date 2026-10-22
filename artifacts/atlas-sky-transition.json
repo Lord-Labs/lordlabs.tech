@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "outgoingAt140ms": 0.299748,
+  "incomingAt140ms": 0.700252,
+  "checks": [
+    "overlapping sky crossfade",
+    "final opacity",
+    "rapid reversal",
+    "paused instant switch",
+    "transition state cleanup"
+  ]
+}

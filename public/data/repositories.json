@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-10-21T08:49:43.992Z",
+  "repositories": [
+    {
+      "name": "ZipZap",
+      "description": "Free, open-source Windows download manager with a Rust engine, safe resume, and an English/Arabic desktop.",
+      "language": "Rust",
+      "topics": [
+        "download-manager",
+        "open-source",
+        "rust",
+        "tauri",
+        "windows"
+      ],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "open_issues_count": 10,
+      "pushed_at": "2026-10-21T05:52:13Z",
+      "homepage": "https://zipzap-website.vercel.app",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "private": false,
+      "archived": false,
+      "fork": false,
+      "owner": {
+        "login": "Lord-Labs"
+      }
+    },
+    {
+      "name": "lor",
+      "description": "LOR. — open-source video meetings that remember. No account, no time limit, no download. Built for people who speak two languages in one sentence.",
+      "language": "TypeScript",
+      "topics": [
+        "arabic",
+        "code-switching",
+        "livekit",
+        "meetings",
+        "nextjs",
+        "open-source",
+        "self-hosted",
+        "speech-to-text",
+        "typescript",
+        "video-conferencing",
+        "webrtc",
+        "whisper"
+      ],
+      "stargazers_count": 5,
+      "forks_count": 1,
+      "open_issues_count": 10,
+      "pushed_at": "2026-10-21T08:48:00Z",
+      "homepage": "https://lor-bay.vercel.app",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "private": false,
+      "archived": false,
+      "fork": false,
+      "owner": {
+        "login": "Lord-Labs"
+      }
+    }
+  ]
+}

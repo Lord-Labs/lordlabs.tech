@@ -1,251 +1,282 @@
-import { getPublicRepositories } from "./repositories.js";
+import { initHero } from "./hero.js";
+import { initHeader } from "./experience.js";
+import { getSelectedRepositories, normalizeRepositories, curateRepositories, selectRepositories } from "./repositories.js";
+import { projectCopy } from "./projects.js";
+import { posts } from "./journal.js";
 import { ar } from "./ar.js";
-
-const originals = new Map(
-  [...document.querySelectorAll("[data-i18n]")].map((element) => [
-    element,
-    element.innerHTML,
-  ]),
-);
-let language = "en";
-let exploded = false;
-let live = false;
-let repositories = [];
+const $ = (selector) => document.querySelector(selector);
+const english = Object.fromEntries([...document.querySelectorAll('[data-i18n]')].map(el => [el.dataset.i18n, el.textContent]));
+Object.assign(english, {
+  navigationMenu:"Navigation menu", pauseMotion:"Pause motion", resumeMotion:"Resume motion", motionReduced:"Motion reduced", navJournal:"Journal", sortCurated:"Our selection", readArticle:"Read the article", minutes:"min read", articlesGroup:"JOURNAL", selectedProjects:"Projects, with purpose",
+  viewSource:"Explore the source",
+  searchPlaceholder:"Search by name, topic, or idea…", commandPlaceholder:"Where would you like to go?",
+  loading:"Updating from GitHub", live:"Live from GitHub", snapshot:"Saved copy", unavailable:"GitHub unavailable · showing saved projects", noData:"Could not load · explore GitHub directly",
+  details:"Project details", results:"projects shown", of:"of", updated:"Updated", noDescription:"Explore this project and its source code on GitHub.", repository:"Repository", stars:"Stars", forks:"Forks", openItems:"Open issues & PRs", license:"License", noLicense:"No license specified on GitHub", noRepositories:"No projects are selected for display.", noUpdates:"Updates will appear when GitHub provides a push date.",
+  pages:"GO SOMEWHERE", projectsGroup:"PROJECTS", commandEmpty:"No matches. Try a project or a section name.", close:"Close", quickNavigation:"Search this site", refresh:"Refresh projects", clone:"Make it yours locally", copyCommand:"Copy clone command", copied:"Clone command copied.", copyFailed:"Could not copy. Copy the command from the field:", readme:"Read the README", website:"Visit website", home:"Home", detailName:"Project notes",
+});
+let language = "en", repositories = [], loading = false, live = false, snapshotDate = null, loaded = false, attempted = false;
+const t = (key) => language === "ar" ? ar[key] || english[key] || key : english[key] || key;
+const date = (value) => value ? new Intl.DateTimeFormat(language === "ar" ? "ar-EG" : "en-GB", {dateStyle:"medium"}).format(new Date(value)) : "";
+function node(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+function icon(name) { const image = node("img", "icon"); image.src = `/assets/icons/${name}.svg`; image.alt = ""; image.width = 20; image.height = 20; return image; }
+function link(url, text, className = "text-link") { const a = node("a", className); a.href = url; a.append(node("span", "", text), icon("arrow-up-right")); return a; }
+function tags(repo) {
+  const container=node("div","repo-tags"), seen=new Set();
+  for(const tag of [repo.language,...repo.topics].filter(Boolean)){
+    if(seen.has(tag.toLocaleLowerCase()))continue;seen.add(tag.toLocaleLowerCase());
+    container.append(node("span","",tag));if(container.children.length===5)break;
+  }
+  return container;
+}
 function setLanguage(next) {
   language = next;
   document.documentElement.lang = next;
   document.documentElement.dir = next === "ar" ? "rtl" : "ltr";
-  for (const [element, original] of originals) {
-    if (next === "ar" && ar[element.dataset.i18n]) {
-      element.textContent = ar[element.dataset.i18n];
-      element.style.whiteSpace = "pre-line";
-    } else {
-      element.innerHTML = original;
-      element.style.whiteSpace = "";
-    }
+  const languageUrl=new URL(location.href);languageUrl.searchParams.set("lang",next);history.replaceState(null,"",languageUrl);
+  for (const element of document.querySelectorAll("[data-i18n]")) element.textContent = t(element.dataset.i18n);
+  for (const element of document.querySelectorAll("[data-copy-en]")) element.textContent=element.dataset[next==="ar"?"copyAr":"copyEn"];
+  for (const image of document.querySelectorAll("[data-alt-en]")) image.alt=image.dataset[next==="ar"?"altAr":"altEn"];
+
+  document.querySelector(".mobile-nav summary").setAttribute("aria-label",t("navigationMenu"));
+  document.querySelector(".mobile-nav nav").setAttribute("aria-label",t("navigationMenu"));
+  document.querySelector('.journey-rail').setAttribute('aria-label', next === 'ar' ? 'فصول الرحلة' : 'Page chapters');
+  document.querySelector('.project-filters').setAttribute('aria-label', next === 'ar' ? 'نوع المشروع' : 'Project type');
+  document.querySelector('.toolbelt').setAttribute('aria-label', next === 'ar' ? 'تقنيات نستخدمها في مشاريعنا' : 'Technologies used in our projects');
+  for (const element of document.querySelectorAll("[data-placeholder]")) element.placeholder = t(element.dataset.placeholder);
+  for (const anchor of document.querySelectorAll("[data-journal-link]")) anchor.href=`/journal/?lang=${next}`;
+  for (const anchor of document.querySelectorAll("[data-local-language]")) {
+    const url = new URL(anchor.href);
+    url.searchParams.set("lang", next);
+    anchor.href = url.href;
   }
-  const control = document.querySelector("#language");
-  control.textContent = next === "ar" ? "English" : "العربية";
-  control.lang = next === "ar" ? "en" : "ar";
-  control.setAttribute(
-    "aria-label",
-    next === "ar" ? "Switch to English" : "التبديل إلى العربية",
-  );
-  document
-    .querySelector("#menu-toggle")
-    .setAttribute(
-      "aria-label",
-      next === "ar" ? "قائمة التنقل" : "Navigation menu",
-    );
-  document
-    .querySelector(".desktop-nav")
-    .setAttribute(
-      "aria-label",
-      next === "ar" ? "التنقل الرئيسي" : "Main navigation",
-    );
-  document
-    .querySelector("#mobile-nav")
-    .setAttribute(
-      "aria-label",
-      next === "ar" ? "التنقل على الموبايل" : "Mobile navigation",
-    );
-  document
-    .querySelector(".brand")
-    .setAttribute(
-      "aria-label",
-      next === "ar" ? "LORD Labs — الرئيسية" : "LORD Labs home",
-    );
-  document
-    .querySelector(".footer-brand")
-    .setAttribute(
-      "aria-label",
-      next === "ar" ? "العودة لأعلى الصفحة" : "Back to top",
-    );
-  document
-    .querySelector(".project-visual")
-    .setAttribute(
-      "aria-label",
-      next === "ar"
-        ? "استكشف موقع lordlabs.tech على GitHub"
-        : "Explore lordlabs.tech on GitHub",
-    );
-  document
-    .querySelector("#sculpture")
-    .setAttribute(
-      "aria-label",
-      next === "ar"
-        ? "وحدات مجسمة لهوية Patchwork مع وحدة برتقالية تمثل المساهمة."
-        : "Sculptural Patchwork blocks with an orange contribution piece.",
-    );
-  document.title =
-    next === "ar"
-      ? "LORD Labs — نبني أفكارًا، لتبني عليها."
-      : "LORD Labs — Built to be built upon.";
-  document.querySelector("#copy-status").textContent = "";
-  updateArt();
+  const languageButton = $("#language");
+  languageButton.textContent = next === "ar" ? "English" : "العربية";
+  languageButton.lang = next === "ar" ? "en" : "ar";
+  languageButton.setAttribute("aria-label", next === "ar" ? "Switch to English" : "التبديل إلى العربية");
+  for (const el of document.querySelectorAll("[data-close-dialog]")) el.setAttribute("aria-label", t("close"));
+  for (const el of document.querySelectorAll("[data-open-search]")) el.setAttribute("aria-label", t("quickNavigation"));
+  $("#refresh").setAttribute("aria-label", t("refresh"));
+  $(".desktop-nav").setAttribute("aria-label", next === "ar" ? "التنقل الرئيسي" : "Main navigation");
+  document.querySelector("[data-footer-routes]")?.setAttribute("aria-label", next === "ar" ? "أكمل الاستكشاف" : "Continue exploring");
+  $(".hero-live").setAttribute("aria-label", next === "ar" ? "نظرة على المنظمة" : "Organization overview");
+  document.title = next === "ar" ? "LORD Labs — المشاريع والأفكار." : "LORD Labs — Projects & possibilities.";
   updateStatus();
-  renderRepositories();
-  try {
-    localStorage.setItem("lordlabs-language", next);
-  } catch {
-    /* Language still works when storage is blocked. */
-  }
+  if (loaded) { updateLanguageOptions(); renderRepositories(); renderOverview(); }
+  renderCommands();
+  renderJournal();
+  updateMotionControl();
+  try { localStorage.setItem("lordlabs-language", next); } catch { /* Storage is optional. */ }
 }
+$("#language").addEventListener("click", () => setLanguage(language === "en" ? "ar" : "en"));
 function updateStatus() {
-  document.querySelector("#repo-status").textContent =
-    language === "ar"
-      ? ar[live ? "live" : "snapshot"]
-      : live
-        ? "Live from GitHub"
-        : "Repository snapshot";
+  $("#repo-status").textContent = loading || (!attempted && !loaded) ? t("loading") : live ? t("live") : loaded ? `${t("unavailable")}${snapshotDate ? " · " + date(snapshotDate) : ""}` : t("noData");
+  $(".data-state").classList.toggle("is-loading", loading);
+  $("#refresh").disabled = loading;
+  $("#repository-list").setAttribute("aria-busy", String(loading));
 }
-function renderRepositories() {
-  document.querySelectorAll(".repo-extra").forEach((card) => card.remove());
-  const grid = document.querySelector("#project-grid");
-  const invitation = document.querySelector("#next-project");
-  for (const repo of repositories.filter(
-    (repo) => repo.name !== "lordlabs.tech",
-  )) {
-    const card = document.createElement("article");
-    card.className = "project-card repo-extra";
-    const visual = document.createElement("a");
-    visual.className = "project-visual";
-    visual.href = repo.url;
-    const image = document.createElement("img");
-    image.src = "/assets/brand/symbol.svg";
-    image.alt = "";
-    image.width = 80;
-    image.height = 80;
-    image.loading = "lazy";
-    const name = document.createElement("span");
-    name.textContent = repo.name;
-    name.dir = "auto";
-    visual.append(image, name);
-    const info = document.createElement("div");
-    info.className = "project-info";
-    const meta = document.createElement("div");
-    meta.className = "project-meta mono";
-    meta.textContent = language === "ar" ? ar.repository : "REPOSITORY";
-    const heading = document.createElement("h3");
-    const link = document.createElement("a");
-    link.href = repo.url;
-    link.textContent = repo.name;
-    link.dir = "auto";
-    const arrow = document.createElement("img");
-    arrow.className = "icon";
-    arrow.src = "/assets/icons/arrow-up-right.svg";
-    arrow.alt = "";
-    link.append(arrow);
-    heading.append(link);
-    const description = document.createElement("p");
-    description.dir = "auto";
-    description.textContent =
-      repo.description ||
-      (language === "ar"
-        ? ar.noDescription
-        : "Explore this project and its source code on GitHub.");
-    const tags = document.createElement("div");
-    tags.className = "project-tags";
-    for (const label of [repo.language, repo.license].filter(Boolean)) {
-      const tag = document.createElement("span");
-      tag.textContent = label;
-      tags.append(tag);
-    }
-    info.append(meta, heading, description, tags);
-    card.append(visual, info);
-    grid.insertBefore(card, invitation);
-  }
+function updateLanguageOptions() {
+  const select = $("#language-filter"), selected = select.value;
+  select.replaceChildren(new Option(t("allLanguages"), ""));
+  for (const value of [...new Set(repositories.map(repo => repo.language).filter(Boolean))].sort()) select.add(new Option(value, value));
+  select.closest(".select-field").hidden = select.options.length <= 2;
+  $("#project-sort").closest(".select-field").hidden = repositories.length < 2;
+  select.value = select.options.length > 2 && [...select.options].some(option => option.value === selected) ? selected : "";
+  if (repositories.length < 2) $("#project-sort").value = "curated";
 }
-document
-  .querySelector("#language")
-  .addEventListener("click", () =>
-    setLanguage(language === "en" ? "ar" : "en"),
-  );
-const menu = document.querySelector("#mobile-nav");
-const menuButton = document.querySelector("#menu-toggle");
-function closeMenu() {
-  menu.hidden = true;
-  menuButton.setAttribute("aria-expanded", "false");
+let projectFilter = 'all';
+const filters = [...document.querySelectorAll('[data-project-filter]')];
+function setProjectFilter(button) {
+  projectFilter = button.dataset.projectFilter;
+  filters.forEach(item => { item.setAttribute('aria-pressed', String(item === button)); item.tabIndex = item === button ? 0 : -1; });
+  const indicator = document.querySelector('.filter-selection');
+  indicator.style.width = button.offsetWidth + 'px'; indicator.style.transform = 'translateX(' + button.offsetLeft + 'px)';
+  if (loaded) renderRepositories();
 }
-menuButton.addEventListener("click", () => {
-  menu.hidden = !menu.hidden;
-  menuButton.setAttribute("aria-expanded", String(!menu.hidden));
-});
-menu
-  .querySelectorAll("a")
-  .forEach((link) => link.addEventListener("click", closeMenu));
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !menu.hidden) {
-    closeMenu();
-    menuButton.focus();
-  }
-});
-function updateArt() {
-  const button = document.querySelector("#reassemble");
-  const label =
-    language === "ar"
-      ? ar[exploded ? "assembleView" : "explodeView"]
-      : exploded
-        ? "Assemble view"
-        : "Explode view";
-  button.setAttribute("aria-pressed", String(exploded));
-  button.setAttribute("aria-label", label);
-  button.querySelector("[data-i18n]").textContent = label;
-  document
-    .querySelector("#art-stage")
-    .classList.toggle("is-exploded", exploded);
-}
-document.querySelector("#reassemble").addEventListener("click", () => {
-  exploded = !exploded;
-  updateArt();
-});
-document.querySelector("#copy-repo").addEventListener("click", async () => {
-  const url = "https://github.com/Lord-Labs/lordlabs.tech";
-  const status = document.querySelector("#copy-status");
-  try {
-    await navigator.clipboard.writeText(url);
-    status.textContent =
-      language === "ar" ? ar.copied : "Repository link copied.";
-  } catch {
-    status.textContent =
-      (language === "ar" ? ar.copyFailed : "Could not copy. Repository link:") +
-      " " +
-      url;
-  }
-});
-const navigation = document.querySelectorAll(".desktop-nav a");
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries)
-        if (entry.isIntersecting) {
-          for (const link of navigation) {
-            if (link.hash === "#" + entry.target.id)
-              link.setAttribute("aria-current", "location");
-            else link.removeAttribute("aria-current");
-          }
-        }
-    },
-    { rootMargin: "-15% 0px -60% 0px" },
-  );
-  for (const section of document.querySelectorAll(
-    ".hero-shell, #projects, #about, #contribute",
-  ))
-    observer.observe(section);
-}
-document.querySelector("#year").textContent = new Date().getFullYear();
-try {
-  if (localStorage.getItem("lordlabs-language") === "ar") setLanguage("ar");
-} catch {
-  /* Default to English without storage. */
-}
-getPublicRepositories()
-  .then((result) => {
-    repositories = result;
-    live = true;
-    renderRepositories();
-    updateStatus();
-  })
-  .catch(() => {
-    updateStatus();
+filters.forEach((button, index) => {
+  button.addEventListener('click', () => setProjectFilter(button));
+  button.addEventListener('keydown', event => {
+    if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    const step = (event.key === 'ArrowRight' ? 1 : -1) * (document.documentElement.dir === 'rtl' ? -1 : 1);
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? filters.length - 1 : (index + step + filters.length) % filters.length;
+    setProjectFilter(filters[next]); filters[next].focus();
   });
+});
+new ResizeObserver(() => setProjectFilter(filters.find(button => button.getAttribute('aria-pressed') === 'true'))).observe(document.querySelector('.project-filters'));
+function renderRepositories() {
+  const focusedCard = document.activeElement.closest('.repo-card');
+  const focusedIndex = focusedCard ? [...focusedCard.querySelectorAll('a,button')].indexOf(document.activeElement) : -1;
+  const options = {query:$("#project-search").value, language:$("#language-filter").value, sort:$("#project-sort").value};
+  const matches = selectRepositories(repositories, options).filter(repo => projectFilter === "all" || repo.project.platform === projectFilter);
+  const list = $("#repository-list"); list.replaceChildren();
+  for (const repo of matches) {
+    const project=repo.project;
+    const card = node("article", `repo-card identity-${project.identity}`);card.id=`project-${project.slug}`;
+    const cover = node("div", "project-stage");
+    const identity=node("div","stage-identity");const mark=node("img","project-logo");mark.src=project.logo;mark.alt="";mark.width=64;mark.height=64;
+    const wordmark=node("div","project-wordmark");wordmark.append(mark,node("strong","",projectCopy(project,"title",language)));
+    const facts=node("div","stage-facts");for(const fact of project.facts){const item=node("span","",fact[language]);item.dir="auto";facts.append(item);}
+    identity.append(wordmark,node("p","stage-tagline",projectCopy(project,"tagline",language)),facts,node("span","stage-edition mono",`SELECTED WORK / ${project.slug.toUpperCase()}`));
+    const shot=node("img","project-screenshot");shot.src=project.cover;shot.alt=projectCopy(project,"coverAlt",language);shot.width=1202;shot.height=831;shot.loading="lazy";
+    const visual=node("div","stage-visual");visual.append(shot);cover.append(identity,visual);
+    const body = node("div", "repo-content");
+    const heading = node("h3"); heading.append(link(project.website, projectCopy(project,"title",language), "repo-title"));
+    const description = node("p", "", projectCopy(project,"description",language)); description.dir = "auto";
+    const stats = node("div", "repo-stats");
+    for (const [symbol, key, value] of [["star","stars",repo.stars],["git-fork","forks",repo.forks]]) {
+      if (!value) continue;
+      const stat = node("span"); stat.append(icon(symbol), node("span", "", String(value))); stat.setAttribute("aria-label", `${t(key)}: ${value}`); stats.append(stat);
+    }
+    if (repo.updatedAt) { const updated = node("time", "", `${t("updated")} ${date(repo.updatedAt)}`); updated.dateTime = repo.updatedAt; stats.append(updated); }
+    const actions = node("div", "repo-actions"); const source = link(repo.url, t("viewSource"), "button secondary"); source.prepend(icon("github"));
+    const details = node("button", "detail-button"); details.append(node("span", "", t("details")), icon("arrow-right")); details.addEventListener("click", () => openDetails(repo));
+    actions.append(link(project.website,t("website"),"button project-primary"),source, details);
+    body.append(node("span", "repo-category mono", projectCopy(project,"category",language)), heading, description, tags(repo), stats, actions);
+    const number = node('span','work-number mono', '0' + (repositories.indexOf(repo) + 1));
+    body.prepend(number); card.append(cover, body); list.append(card);
+  }
+  if (focusedIndex >= 0) document.getElementById(focusedCard.id)?.querySelectorAll('a,button')[focusedIndex]?.focus({preventScroll:true});
+  $("#result-count").textContent = language === "en"
+    ? `${matches.length} of ${repositories.length} ${repositories.length === 1 ? "project" : "projects"}`
+    : `${matches.length} من ${repositories.length} مشروع`;
+  $("#empty-state").hidden = matches.length > 0;
+  $("#empty-state h3").textContent = t(repositories.length ? "noResults" : "noRepositories");
+  $("#empty-state p").hidden = !repositories.length;
+  $("#reset-search").hidden = !repositories.length;
+  $("#clear-filters").hidden = !options.query && !options.language && options.sort === "curated" && projectFilter === "all";
+}
+function resetFilters() { setProjectFilter(filters[0]); $("#project-search").value=""; $("#language-filter").value=""; $("#project-sort").value="curated"; renderRepositories(); $("#project-search").focus(); }
+$("#project-search").addEventListener("input", renderRepositories);
+$("#language-filter").addEventListener("change", renderRepositories);
+$("#project-sort").addEventListener("change", renderRepositories);
+$("#clear-filters").addEventListener("click", resetFilters);
+$("#reset-search").addEventListener("click", resetFilters);
+function renderOverview() {
+  $("#project-total").textContent = String(repositories.length);
+  filters[0].lastElementChild.textContent = String(repositories.length).padStart(2, '0');
+  $("#note-total").textContent = String(posts.length);
+  const list = $("#update-list"); list.replaceChildren();
+  const updates = selectRepositories(repositories,{sort:"updated"}).filter(repo => repo.updatedAt).slice(0,4);
+  for (const repo of updates) {
+    const row = node("a", "update-row"); row.href=repo.url;
+    const body = node("div"); const time=node("time","",date(repo.updatedAt));time.dateTime=repo.updatedAt;
+    body.append(node("small","",t("repositoryUpdate")), node("h3","",repo.name), time);
+    row.append(node("span","update-marker"), body, icon("arrow-up-right")); list.append(row);
+  }
+  if (!updates.length) list.append(node("p","feed-note",t("noUpdates")));
+}
+async function copyCommand(command, button) {
+  const feedback = $("#clone-feedback");
+  try { await navigator.clipboard.writeText(command); feedback.textContent = t("copied"); button.replaceChildren(icon("check")); button.classList.add("is-copied"); button.setAttribute("aria-label", t("copied")); setTimeout(()=>{button.replaceChildren(icon("copy"));button.classList.remove("is-copied");button.setAttribute("aria-label",t("copyCommand"));},2000); }
+  catch { feedback.textContent = `${t("copyFailed")} ${command}`; }
+}
+let detailedProjectSlug="";
+function openDetails(repo) {
+  const project=repo.project;
+  detailedProjectSlug=project.slug;
+  const body=node("div",`project-detail identity-${project.identity}`); const heading=node("h2","",projectCopy(project,"title",language)); heading.id="detail-title";
+  const description=node("p","",projectCopy(project,"description",language)); description.dir="auto";
+  const image=node("img","detail-preview");image.src=project.cover;image.alt=projectCopy(project,"coverAlt",language);image.width=1202;image.height=831;
+  const stats=node("div","detail-stats");
+  for (const [key,value] of [["stars",repo.stars],["forks",repo.forks],["openItems",repo.openItems]]) {const stat=node("div","detail-stat");stat.append(node("strong","",String(value)),node("span","",key === "openItems" ? (language === "ar" ? "قضايا وطلبات" : "Open items") : t(key)));stat.setAttribute("aria-label",`${t(key)}: ${value}`);stats.append(stat);}
+  const metadata=node("p","detail-updated",`${t("license")}: ${repo.license || t("noLicense")}${repo.updatedAt ? " · "+t("updated")+" "+date(repo.updatedAt) : ""}`);
+  const command=`git clone ${repo.url}.git`;
+  const clone=node("div","clone-field"); const code=node("code","",command); const copy=node("button");copy.setAttribute("aria-label",t("copyCommand"));copy.append(icon("copy"));copy.addEventListener("click",()=>copyCommand(command,copy));clone.append(code,copy);
+  const feedback=node("p","clone-feedback");feedback.id="clone-feedback";feedback.setAttribute("role","status");feedback.setAttribute("aria-live","polite");
+  const links=node("div","detail-links");links.append(link(repo.url,t("viewSource"),"button secondary"),link(repo.url+"#readme",t("readme")));
+  links.append(link(project.website,t("website")));
+  body.append(heading,description,image,tags(repo),node("p","",projectCopy(project,"note",language)),stats,metadata,node("span","clone-label",t("clone")),clone,feedback,links);
+  $("#project-detail").replaceChildren(body); $("#project-dialog").showModal();
+}
+const commandDialog=$("#command-dialog");
+function renderCommands() {
+  const query=$("#command-search").value.trim().toLocaleLowerCase();
+  const results=$("#command-results");results.replaceChildren();
+  const pages=[["home","home","blocks"],["navProjects","projects","layers"],["navAbout","about","scan"],["navJournal","journal","book-open"],["navContribute","contribute","git-pull-request"]];
+  const matches=pages.filter(([key])=>[english[key],ar[key]].join(" ").toLocaleLowerCase().includes(query));
+  if(matches.length) results.append(node("p","command-group",t("pages")));
+  for(const [key,id,symbol] of matches){const row=node("a","command-result");row.href="#"+id;row.append(icon(symbol),node("span","",t(key)));row.addEventListener("click",()=>commandDialog.close());results.append(row);}
+  const repos=selectRepositories(repositories,{query,sort:"name"});
+  if(repos.length)results.append(node("p","command-group",t("projectsGroup")));
+  for(const repo of repos){const row=node("a","command-result");row.href=`#project-${repo.project.slug}`;row.append(icon("github"),node("span","",projectCopy(repo.project,"title",language)),node("small","",repo.language),icon("arrow-right"));row.addEventListener("click",()=>commandDialog.close());results.append(row);}
+  const notes=posts.filter(post=>[post.en.title,post.ar.title,post.en.category,post.ar.category].join(" ").toLocaleLowerCase().includes(query));
+  if(notes.length)results.append(node("p","command-group",t("articlesGroup")));
+  for(const post of notes){const row=node("a","command-result");row.href=`/journal/${post.slug}/?lang=${language}`;row.append(icon("book-open"),node("span","",post[language].title),icon("arrow-up-right"));results.append(row);}
+  if(!matches.length&&!repos.length&&!notes.length)results.append(node("p","command-empty",t("commandEmpty")));
+}
+function renderJournal(){
+  const list=$("#journal-list");list.replaceChildren();
+  for(const [index,post] of posts.entries()){
+    const copy=post[language],card=node("article",`journal-card journal-${post.art}`);
+    const a=node("a","journal-card-link");a.href=`/journal/${post.slug}/?lang=${language}`;
+    const art=node("div","journal-art");art.setAttribute("aria-hidden","true");art.append(node("span","art-index mono",`FIELD NOTE / 0${index+1}`));
+    const image=node("img","journal-image");image.src=post.cover;image.alt="";image.width=736;image.height=414;image.loading="lazy";art.prepend(image);
+    const body=node("div","journal-card-body");body.append(node("span","journal-category mono",copy.category),node("h3","",copy.title),node("p","",copy.summary));
+    const foot=node("div","journal-card-foot");foot.append(node("span","",language==="ar"&&post.minutes===2?"دقيقتان للقراءة":`${post.minutes} ${t("minutes")}`),icon("arrow-up-right"));const time = node('time','journal-date',date(post.date));time.dateTime=post.date;
+    foot.prepend(time);body.append(foot);a.append(art,body);card.append(a);list.append(card);
+  }
+}
+function openSearch(){if($("#project-dialog").open)$("#project-dialog").close();$("#command-search").value="";renderCommands();if(!commandDialog.open)commandDialog.showModal();$("#command-search").focus();}
+for(const control of document.querySelectorAll("[data-open-search]"))control.addEventListener("click",openSearch);
+$("#command-search").addEventListener("input",renderCommands);
+commandDialog.addEventListener("keydown",event=>{
+  if(!["ArrowDown","ArrowUp"].includes(event.key))return;
+  const rows=[...commandDialog.querySelectorAll(".command-result")];if(!rows.length)return;
+  event.preventDefault();const current=rows.indexOf(document.activeElement);
+  const next=current<0?(event.key==="ArrowDown"?0:rows.length-1):(current+(event.key==="ArrowDown"?1:-1)+rows.length)%rows.length;
+  rows[next].focus();
+});
+for(const button of document.querySelectorAll("[data-close-dialog]"))button.addEventListener("click",()=>button.closest("dialog").close());
+for(const dialog of document.querySelectorAll("dialog"))dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
+$("#project-dialog").addEventListener("close",()=>{if(!document.querySelector("dialog[open]"))document.getElementById(`project-${detailedProjectSlug}`)?.querySelector(".detail-button")?.focus();});
+document.addEventListener("keydown",event=>{
+  const typing=event.target.closest("input,select,textarea,[contenteditable=true]");
+  if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="k"){event.preventDefault();commandDialog.open?commandDialog.close():openSearch();}
+  else if(event.key==="/"&&!typing&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!document.querySelector("dialog[open]")){
+    event.preventDefault();if(loaded){$("#project-search").scrollIntoView({block:"center"});$("#project-search").focus({preventScroll:true});}else openSearch();
+  }
+});
+function updateNavigation() {
+  for (const anchor of document.querySelectorAll('.desktop-nav a')) {
+    if (anchor.hash === location.hash || (location.hash.startsWith('#project-') && anchor.hash === '#projects')) anchor.setAttribute('aria-current', 'location');
+    else anchor.removeAttribute('aria-current');
+  }
+}
+window.addEventListener('hashchange', updateNavigation);
+updateNavigation();
+function renderData(){loaded=true;$("#explorer-tools").hidden=false;updateLanguageOptions();renderRepositories();renderOverview();renderCommands();}
+async function refresh(){
+  if(loading)return;attempted=true;loading=true;updateStatus();
+  try{repositories=await getSelectedRepositories();live=true;renderData();}
+  catch{live=false;}
+  finally{loading=false;updateStatus();}
+}
+$("#refresh").addEventListener("click",refresh);
+$("#year").textContent=new Date().getFullYear();
+const motionQuery=matchMedia("(prefers-reduced-motion: reduce)");
+let motionPaused=false;try{motionPaused=localStorage.getItem("lordlabs-motion")==="paused";}catch{/* Preferences are optional. */}
+function updateMotionControl(){
+  const paused=motionPaused||motionQuery.matches, button=$("#motion-toggle");
+  document.documentElement.dataset.motion=paused?"off":"on";
+  button.disabled=motionQuery.matches;button.setAttribute("aria-pressed",String(paused));
+  button.querySelector("span").textContent=t(motionQuery.matches?"motionReduced":paused?"resumeMotion":"pauseMotion");
+  button.querySelector("img").src=`/assets/icons/${paused?"play":"pause"}.svg`;
+}
+$("#motion-toggle").addEventListener("click",()=>{motionPaused=!motionPaused;updateMotionControl();try{localStorage.setItem("lordlabs-motion",motionPaused?"paused":"on");}catch{/* Storage is optional. */}});
+motionQuery.addEventListener("change",updateMotionControl);
+initHeader();
+let initialLanguage="en";try{if(localStorage.getItem("lordlabs-language")==="ar")initialLanguage="ar";}catch{/* English is the default. */}
+const requestedLanguage=new URLSearchParams(location.search).get("lang");if(requestedLanguage==="en"||requestedLanguage==="ar")initialLanguage=requestedLanguage;
+setLanguage(initialLanguage);
+initHero();
+async function init(){
+  try{const response=await fetch("/data/repositories.json");if(!response.ok)throw new Error("No snapshot");const snapshot=await response.json();repositories=curateRepositories(normalizeRepositories(snapshot.repositories));snapshotDate=Number.isFinite(Date.parse(snapshot.fetchedAt))?snapshot.fetchedAt:null;renderData();}
+  catch{/* The static project remains usable if the snapshot cannot load. */}
+  await refresh();
+}
+init();

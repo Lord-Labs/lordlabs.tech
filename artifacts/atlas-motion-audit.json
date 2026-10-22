@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "native anchor destination + language",
+    "chapter arrival",
+    "pause cancels in-flight arrival",
+    "paused navigation is static",
+    "resume arrival",
+    "finished animations release styles"
+  ]
+}

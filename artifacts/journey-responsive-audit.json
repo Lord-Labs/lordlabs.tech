@@ -1,0 +1,200 @@
+{
+  "status": "PASS",
+  "cases": 30,
+  "checks": [
+    "full-bleed hero",
+    "original assets",
+    "language",
+    "no horizontal overflow",
+    "filter keyboard",
+    "search + reset",
+    "details + focus",
+    "command search",
+    "motion pause",
+    "mobile menu",
+    "accordion",
+    "journal language links"
+  ],
+  "results": [
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    }
+  ]
+}

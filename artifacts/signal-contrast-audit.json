@@ -1,0 +1,474 @@
+{
+  "status": "PASS",
+  "cases": 30,
+  "contrast": [
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 320,
+      "checked": 144,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 375,
+      "checked": 144,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 768,
+      "checked": 143,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1024,
+      "checked": 147,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1440,
+      "checked": 147,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 320,
+      "checked": 144,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 375,
+      "checked": 144,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 768,
+      "checked": 143,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1024,
+      "checked": 147,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1440,
+      "checked": 147,
+      "normalMinimum": 4.99,
+      "largeMinimum": 5.91,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 320,
+      "checked": 23,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 375,
+      "checked": 23,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 768,
+      "checked": 24,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1024,
+      "checked": 24,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1440,
+      "checked": 24,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 320,
+      "checked": 23,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 375,
+      "checked": 23,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 768,
+      "checked": 24,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1024,
+      "checked": 24,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1440,
+      "checked": 24,
+      "normalMinimum": 5.34,
+      "largeMinimum": 14.19,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 320,
+      "checked": 31,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 375,
+      "checked": 31,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 768,
+      "checked": 32,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1024,
+      "checked": 32,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1440,
+      "checked": 32,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 320,
+      "checked": 31,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 375,
+      "checked": 31,
+      "normalMinimum": 5.76,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 768,
+      "checked": 32,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1024,
+      "checked": 32,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1440,
+      "checked": 32,
+      "normalMinimum": 5.91,
+      "largeMinimum": 15.29,
+      "failures": []
+    }
+  ],
+  "checks": [
+    "rendered text contrast",
+    "full-bleed hero",
+    "original assets",
+    "language",
+    "no horizontal overflow",
+    "filter keyboard",
+    "search + reset",
+    "details + focus",
+    "command search",
+    "motion pause",
+    "mobile menu",
+    "accordion",
+    "journal language links"
+  ],
+  "results": [
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "en",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 320,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 768,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1024,
+      "status": "PASS"
+    },
+    {
+      "page": "/journal/patchwork-by-design/",
+      "lang": "ar",
+      "width": 1440,
+      "status": "PASS"
+    }
+  ],
+  "method": "Computed main/footer text foreground and ancestor backgrounds with alpha and opacity; token checks cover key control/header pairs. Decorative imagery and a full WCAG review are outside this check."
+}
