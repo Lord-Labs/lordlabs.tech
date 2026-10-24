@@ -77,6 +77,8 @@ For Cloudflare Pages: framework **None**, build `npm run build`, output `dist`, 
 
 Production is hosted at [lordlabs.tech](https://lordlabs.tech/) through Cloudflare Pages. Pushes to `main` trigger deployment; deployable files are generated in `dist/`.
 
+The production build adds one content-derived version to script, stylesheet, module-import and repository-snapshot URLs. This keeps each page on the current deployment even when a browser has older files cached. `_headers` also requires cache revalidation. Source URLs stay unchanged for local development.
+
 For local visual checks, open `/__qa.html` and run the layout/interaction audit. The review page is excluded from `dist/`.
 
 ## License
