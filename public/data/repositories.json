@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-21T08:49:43.992Z",
+  "fetchedAt": "2026-10-24T03:53:34.264Z",
   "repositories": [
     {
       "name": "ZipZap",
@@ -14,8 +14,8 @@
       ],
       "stargazers_count": 0,
       "forks_count": 0,
-      "open_issues_count": 10,
-      "pushed_at": "2026-10-21T05:52:13Z",
+      "open_issues_count": 7,
+      "pushed_at": "2026-10-23T20:36:14Z",
       "homepage": "https://zipzap-website.vercel.app",
       "license": {
         "key": "mit",
@@ -51,8 +51,8 @@
       ],
       "stargazers_count": 5,
       "forks_count": 1,
-      "open_issues_count": 10,
-      "pushed_at": "2026-10-21T08:48:00Z",
+      "open_issues_count": 11,
+      "pushed_at": "2026-10-22T19:29:35Z",
       "homepage": "https://lor-bay.vercel.app",
       "license": {
         "key": "agpl-3.0",
@@ -60,6 +60,41 @@
         "spdx_id": "AGPL-3.0",
         "url": "https://api.github.com/licenses/agpl-3.0",
         "node_id": "MDc6TGljZW5zZTE="
+      },
+      "private": false,
+      "archived": false,
+      "fork": false,
+      "owner": {
+        "login": "Lord-Labs"
+      }
+    },
+    {
+      "name": "OpenDownload",
+      "description": "Open-source public media downloader with LinkedIn, Pinterest and Threads in current source, Arabic/RTL, durable jobs and guarded downloads. v0.1 excludes YouTube.",
+      "language": "Go",
+      "topics": [
+        "arabic",
+        "docker",
+        "downloader",
+        "golang",
+        "linkedin",
+        "nextjs",
+        "pinterest",
+        "self-hosted",
+        "threads",
+        "yt-dlp"
+      ],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "open_issues_count": 13,
+      "pushed_at": "2026-10-24T03:53:28Z",
+      "homepage": "https://opendownload.lord.blitz.cloud/",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
       },
       "private": false,
       "archived": false,

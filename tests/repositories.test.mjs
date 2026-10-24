@@ -69,15 +69,16 @@ test("only selected endpoints are fetched and the project retains its curated id
   const urls=[];
   const projects=await getSelectedRepositories(async url=>{urls.push(url);return {ok:true,json:async()=>repo({name:url.split('/').at(-1)})};});
   assert.deepEqual(urls,selectedProjects.map(project=>`https://api.github.com/repos/Lord-Labs/${project.repository}`));
-  assert.deepEqual(projects.map(project=>project.project.identity),['zipzap','lor']);
+  assert.deepEqual(projects.map(project=>project.project.identity),['zipzap','lor','opendownload']);
 });
 test("unselected snapshot entries never enter the gallery, search, or editorial order", () => {
-  const raw=normalizeRepositories([repo({name:"unselected"}),repo({name:"lor"}),repo({name:"ZipZap"})]);
+  const raw=normalizeRepositories([repo({name:"unselected"}),repo({name:"lor"}),repo({name:"ZipZap"}),repo({name:"OpenDownload"})]);
   const curated=curateRepositories(raw);
-  assert.deepEqual(curated.map(item=>item.name),["ZipZap","lor"]);
+  assert.deepEqual(curated.map(item=>item.name),["ZipZap","lor","OpenDownload"]);
   assert.deepEqual(selectRepositories(curated,{query:"unselected"}),[]);
   assert.equal(selectRepositories(curated,{query:"تنزيلاتك"}).length,1);
   assert.equal(selectRepositories(curated,{query:"اجتماعات"})[0].name,'lor');
+  assert.equal(selectRepositories(curated,{query:"وسائط"})[0].name,'OpenDownload');
   const ordered=curateRepositories(raw,[{repository:"unselected"},{repository:"ZipZap"}]);
   assert.deepEqual(selectRepositories(ordered).map(item=>item.name),["unselected","ZipZap"]);
 });
