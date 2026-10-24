@@ -9,7 +9,7 @@ const english = Object.fromEntries([...document.querySelectorAll('[data-i18n]')]
 Object.assign(english, {
   navProjects:"Projects", navAbout:"The lab", navContribute:"Contribute",
   navigationMenu:"Navigation menu", pauseMotion:"Pause motion", resumeMotion:"Resume motion", motionReduced:"Motion reduced", navJournal:"Journal", sortCurated:"Our selection", productPreview:"PRODUCT PREVIEW", expandPreview:"Expand preview", previewTitle:"Inside the product", readArticle:"Read the article", minutes:"min read", articlesGroup:"JOURNAL", selectedProjects:"Projects, with purpose",
-  viewSource:"Explore the source",
+  viewSource:"Explore the source", openApp:"Open app",
   searchPlaceholder:"Search by name, topic, or idea…", commandPlaceholder:"Where would you like to go?",
   loading:"Updating from GitHub", live:"Live from GitHub", snapshot:"Saved copy", unavailable:"GitHub unavailable · showing saved projects", noData:"Could not load · explore GitHub directly",
   details:"Project details", results:"projects shown", of:"of", updated:"Updated", noDescription:"Explore this project and its source code on GitHub.", repository:"Repository", stars:"Stars", forks:"Forks", openItems:"Open issues & PRs", license:"License", noLicense:"No license specified on GitHub", noRepositories:"No projects are selected for display.", noUpdates:"Updates will appear when GitHub provides a push date.",
@@ -138,7 +138,7 @@ function renderRepositories(animate = false) {
     const title=node('span','poster-title',project.title.en);title.dir='ltr';title.setAttribute('aria-hidden','true');
     const tagline=node('p','poster-tagline',projectCopy(project,'posterLine',language)||projectCopy(project,'tagline',language));
     const preview=node('button','preview-trigger');preview.type='button';preview.setAttribute('aria-label',`${t('expandPreview')} · ${project.title.en}`);
-    const shot=node('img','project-screenshot');shot.src=project.cover;shot.alt=projectCopy(project,'coverAlt',language);shot.width=project.slug==='lor'?1440:1202;shot.height=project.slug==='lor'?900:831;shot.loading='lazy';shot.decoding='async';
+    const shot=node('img','project-screenshot');shot.src=project.cover;shot.alt=projectCopy(project,'coverAlt',language);shot.width=project.coverWidth||(project.slug==='lor'?1440:1202);shot.height=project.coverHeight||(project.slug==='lor'?900:831);shot.loading='lazy';shot.decoding='async';
     preview.append(shot);preview.addEventListener('click',()=>openPreview(project));
     const posterFoot=node('figcaption','poster-foot');posterFoot.append(node('span','',t('productPreview')),icon('scan'));
     poster.append(topline,title,tagline,preview,posterFoot);
@@ -150,7 +150,9 @@ function renderRepositories(animate = false) {
     const actions=node('div','repo-actions');
     const source=link(repo.url,t('viewSource'),'text-link');source.prepend(icon('github'));
     const details=node('button','detail-button');details.append(node('span','',t('details')),icon('arrow-right'));details.addEventListener('click',()=>openDetails(repo));
-    actions.append(source,details);
+    actions.append(source);
+    if(project.app)actions.append(link(project.app,t('openApp'),'text-link'));
+    actions.append(details);
     body.append(node('span','repo-category mono',projectCopy(project,'category',language)),heading,description,features,actions);
     card.append(poster,body);list.append(card);
   }
@@ -210,7 +212,7 @@ function openDetails(repo) {
   detailedProjectSlug=project.slug;
   const body=node("div",`project-detail identity-${project.identity}`); const heading=node("h2","",projectCopy(project,"title",language)); heading.id="detail-title";
   const description=node("p","",projectCopy(project,"description",language)); description.dir="auto";
-  const image=node("img","detail-preview");image.src=project.cover;image.alt=projectCopy(project,"coverAlt",language);image.width=project.slug === "lor" ? 1440 : 1202;image.height=project.slug === "lor" ? 900 : 831;
+  const image=node("img","detail-preview");image.src=project.cover;image.alt=projectCopy(project,"coverAlt",language);image.width=project.coverWidth||(project.slug === "lor" ? 1440 : 1202);image.height=project.coverHeight||(project.slug === "lor" ? 900 : 831);
   const stats=node("div","detail-stats");
   for (const [key,value] of [["stars",repo.stars],["forks",repo.forks],["openItems",repo.openItems]]) {const stat=node("div","detail-stat");stat.append(node("strong","",String(value)),node("span","",key === "openItems" ? (language === "ar" ? "قضايا وطلبات" : "Open items") : t(key)));stat.setAttribute("aria-label",`${t(key)}: ${value}`);stats.append(stat);}
   const metadata=node("p","detail-updated",`${t("license")}: ${repo.license || t("noLicense")}${repo.updatedAt ? " · "+t("updated")+" "+date(repo.updatedAt) : ""}`);
@@ -221,6 +223,7 @@ function openDetails(repo) {
   const feedback=node("p","clone-feedback");feedback.id="clone-feedback";feedback.setAttribute("role","status");feedback.setAttribute("aria-live","polite");
   const links=node("div","detail-links");links.append(link(repo.url,t("viewSource"),"button secondary"),link(repo.url+"#readme",t("readme")));
   links.append(link(project.website,t("website")));
+  if(project.app)links.append(link(project.app,t('openApp'),'button secondary'));
   body.append(heading,description,image,benefits,tags(repo),node("p","",projectCopy(project,"note",language)),stats,metadata,node("span","clone-label",t("clone")),clone,feedback,links);
   $("#project-detail").replaceChildren(body); $("#project-dialog").showModal();
 }

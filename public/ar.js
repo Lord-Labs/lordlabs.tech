@@ -54,7 +54,7 @@ export const ar = {
   "noData": "تعذر التحميل · استكشف GitHub مباشرة",
   "projectsTitle": "أفكار تعمل.",
   "projectsTitle2": "فكرتك القادمة.",
-  "projectsIntro": "مدير تنزيلات لسطح المكتب، ومساحة للاجتماعات في متصفحك. اختر ما يناسبك، ثم تعرّف على طريقة بنائه.",
+  "projectsIntro": "تنزيل الملفات والوسائط، واجتماعات الفيديو. أدوات لسطح المكتب والمتصفح. اختر ما يناسبك، ثم تعرّف على طريقة بنائه.",
   "searchLabel": "ابحث في المشاريع",
   "searchPlaceholder": "ابحث باسم المشروع، موضوعه، أو فكرته…",
   "languageFilter": "لغة البرمجة",
@@ -175,5 +175,6 @@ export const ar = {
   "articlesGroup": "المدونة",
   "productPreview": "من داخل المنتج",
   "expandPreview": "تكبير المعاينة",
-  "previewTitle": "من داخل المنتج"
+  "previewTitle": "من داخل المنتج",
+  "openApp": "افتح التطبيق"
 };

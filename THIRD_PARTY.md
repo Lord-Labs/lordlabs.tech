@@ -1,5 +1,9 @@
 # Third-party assets and references
 
+## OpenDownload
+
+`public/assets/projects/opendownload.svg` is the unmodified original wordmark from `apps/web/public/icon.svg` in [OpenDownload](https://github.com/Lord-Labs/OpenDownload). `opendownload-workspace.jpg` is the original 1065 × 927 JPEG from `docs/assets/workspace-video-v2.jpg`, showing the real application with a public Threads video. Both were copied from commit `7e59ef8bacd47e17d053cf764c382c7bed015fdb` on 2026-10-24. The project's [capture provenance](https://github.com/Lord-Labs/OpenDownload/blob/main/docs/SCREENSHOTS.md) identifies it as a real public application capture. Source titles, thumbnails and project trademarks retain their owners' rights; this capture is not generated artwork or a claim of ownership of the displayed media.
+
 ## LORD Labs identity
 
 The logo, wordmark, favicon and social avatar were supplied by the owner in `LORD-Labs-Patchwork`. They remain the property of LORD Labs and are excluded from the website code's MIT license. Original logo files are used unmodified. The orbital linework and `public/assets/patchwork-pattern.svg` are original decorative website work inspired by that identity.
