@@ -55,7 +55,7 @@ html[lang=ar] .article-body :is(p,blockquote){line-height:2.15}
 .identity-lor{--poster:#c8b8fa;--poster-ink:#2d2147;--poster-shape:#f381a9;--poster-tilt:7deg;--poster-x:-4%}
 .identity-opendownload{--poster:#dfe5ff;--poster-ink:#22283b;--poster-shape:#a8b2ef;--poster-tilt:-5deg;--poster-x:3%}
 .identity-ibada{--poster:#e1ebd9;--poster-ink:#1f4536;--poster-shape:#b8cfb1;--poster-tilt:5deg;--poster-x:0%}
-.identity-ibada .project-poster .project-screenshot{top:38%;left:calc(50% - min(26%, 128px));width:min(52%, 256px)}
+.identity-ibada .project-poster .project-screenshot{top:max(47%, 230px);left:calc(50% - min(26%, 128px));width:min(52%, 256px)}
 .identity-ibada .repo-title{direction:inherit}
 html[lang=ar] .identity-ibada .repo-content h3{font-family:var(--font);letter-spacing:normal}
 .project-filters{flex-wrap:wrap}
