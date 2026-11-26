@@ -143,7 +143,7 @@ function renderRepositories(animate = false) {
     const posterFoot=node('figcaption','poster-foot');posterFoot.append(node('span','',t('productPreview')),icon('scan'));
     poster.append(topline,title,tagline,preview,posterFoot);
     const body=node('div','repo-content');
-    const heading=node('h3');heading.append(link(project.website,project.title.en,'repo-title'));
+    const heading=node('h3');heading.append(link(project.website,projectCopy(project,'title',language),'repo-title'));
     const description=node('p','project-description',projectCopy(project,'description',language));description.dir='auto';
     const features=node('ul','poster-benefits');
     for(const feature of project.features)features.append(node('li','',feature.title[language]));
@@ -176,7 +176,7 @@ document.addEventListener('click',event=>{
   if(anchor && new URL(anchor.href).pathname===location.pathname && !document.getElementById(anchor.hash.slice(1)) && loaded)resetFilters(false);
 });
 function openPreview(project){
-  const image=node('img');image.src=project.cover;image.alt=projectCopy(project,'coverAlt',language);image.width=project.slug === "lor" ? 1440 : 1202;image.height=project.slug === "lor" ? 900 : 831;
+  const image=node('img');image.src=project.cover;image.alt=projectCopy(project,'coverAlt',language);image.width=project.coverWidth||(project.slug==='lor'?1440:1202);image.height=project.coverHeight||(project.slug==='lor'?900:831);
   $('#preview-title').textContent=`${projectCopy(project,'title',language)} · ${t('previewTitle')}`;
   const caption=node('p','',projectCopy(project,'coverAlt',language));
   $('#preview-content').replaceChildren(image,caption);

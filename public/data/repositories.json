@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-24T03:53:34.264Z",
+  "fetchedAt": "2026-11-26T17:11:27.403Z",
   "repositories": [
     {
       "name": "ZipZap",
@@ -12,10 +12,10 @@
         "tauri",
         "windows"
       ],
-      "stargazers_count": 0,
+      "stargazers_count": 1,
       "forks_count": 0,
-      "open_issues_count": 7,
-      "pushed_at": "2026-10-23T20:36:14Z",
+      "open_issues_count": 9,
+      "pushed_at": "2026-11-20T22:06:36Z",
       "homepage": "https://zipzap-website.vercel.app",
       "license": {
         "key": "mit",
@@ -51,8 +51,8 @@
       ],
       "stargazers_count": 5,
       "forks_count": 1,
-      "open_issues_count": 11,
-      "pushed_at": "2026-10-22T19:29:35Z",
+      "open_issues_count": 14,
+      "pushed_at": "2026-11-16T23:07:24Z",
       "homepage": "https://lor-bay.vercel.app",
       "license": {
         "key": "agpl-3.0",
@@ -86,9 +86,44 @@
       ],
       "stargazers_count": 0,
       "forks_count": 0,
-      "open_issues_count": 13,
-      "pushed_at": "2026-10-24T03:53:28Z",
+      "open_issues_count": 9,
+      "pushed_at": "2026-11-24T06:54:44Z",
       "homepage": "https://opendownload.lord.blitz.cloud/",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "private": false,
+      "archived": false,
+      "fork": false,
+      "owner": {
+        "login": "Lord-Labs"
+      }
+    },
+    {
+      "name": "ibada",
+      "description": "Offline prayer times, adhan alerts, daily adhkar, and tasbeeh in an Arabic Flutter app for Android and iOS.",
+      "language": "Dart",
+      "topics": [
+        "adhan",
+        "adhkar",
+        "android",
+        "dart",
+        "flutter",
+        "ios",
+        "offline-first",
+        "open-source",
+        "prayer-times",
+        "tasbeeh"
+      ],
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "open_issues_count": 0,
+      "pushed_at": "2026-11-25T18:11:54Z",
+      "homepage": "https://ibada.lordlabs.tech/",
       "license": {
         "key": "mit",
         "name": "MIT License",

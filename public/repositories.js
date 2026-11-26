@@ -48,7 +48,7 @@ export function selectRepositories(repositories, { query = "", language = "", so
   const term = query.trim().toLocaleLowerCase();
   return repositories.filter((repo) =>
     (!language || repo.language === language) &&
-    (!term || [repo.name, repo.description, repo.language, ...repo.topics, ...Object.values(repo.project?.description || {}), ...Object.values(repo.project?.tagline || {})].join(" ").toLocaleLowerCase().includes(term))
+    (!term || [repo.name, repo.description, repo.language, ...repo.topics, ...Object.values(repo.project?.title || {}), ...Object.values(repo.project?.description || {}), ...Object.values(repo.project?.tagline || {})].join(" ").toLocaleLowerCase().includes(term))
   ).sort((a, b) => {
     if (sort === "stars") return b.stars - a.stars || a.name.localeCompare(b.name);
     if (sort === "name") return a.name.localeCompare(b.name);

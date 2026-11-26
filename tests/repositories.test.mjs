@@ -69,7 +69,8 @@ test("only selected endpoints are fetched and the project retains its curated id
   const urls=[];
   const projects=await getSelectedRepositories(async url=>{urls.push(url);return {ok:true,json:async()=>repo({name:url.split('/').at(-1)})};});
   assert.deepEqual(urls,selectedProjects.map(project=>`https://api.github.com/repos/Lord-Labs/${project.repository}`));
-  assert.deepEqual(projects.map(project=>project.project.identity),['zipzap','lor','opendownload']);
+  assert.deepEqual(projects.map(project=>project.project.identity),['zipzap','lor','opendownload','ibada']);
+  assert.deepEqual(selectRepositories(projects,{query:'عبادة'}).map(project=>project.name),['ibada']);
 });
 test("unselected snapshot entries never enter the gallery, search, or editorial order", () => {
   const raw=normalizeRepositories([repo({name:"unselected"}),repo({name:"lor"}),repo({name:"ZipZap"}),repo({name:"OpenDownload"})]);

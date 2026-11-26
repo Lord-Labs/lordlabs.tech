@@ -25,9 +25,9 @@ The main navigation links to `/projects/`, `/journal/`, `/about/` and `/contribu
 
 ## Select projects
 
-Edit **`public/projects.js`**. This is the explicit editorial selection and display order. New public repositories do not appear automatically. The current selection is **ZipZap**, **LOR.** and **OpenDownload**; the supplied Lord-shaban URL now redirects to its canonical repository under Lord-Labs.
+Edit **`public/projects.js`**. This is the explicit editorial selection and display order. New public repositories do not appear automatically. The current selection is **ZipZap**, **LOR.**, **OpenDownload** and **Ibada**.
 
-Each entry defines the repository, unique slug, platform (`desktop` or `web`), identity class, bilingual context, original logo, product capture, website and contextual note. Add poster identity and responsive rules in `public/refinements.css`. Each project also supplies three bilingual benefits shown on the poster caption and explained in its details dialog. Keep supplied project logos intact. The gallery, platform filters, search and live metadata share the same explicit selection. The current gallery is staggered graphic posters: lime for ZipZap, lilac and pink for LOR., and periwinkle for OpenDownload. OpenDownload links separately to its landing page and public app. All selected projects remain visible and discoverable. Clicking a poster opens its real interface in a native preview dialog; Escape closes it and returns focus. Hover and keyboard focus move the screenshot within the poster, with reduced-motion and pause support.
+Each entry defines the repository, unique slug, platform (`desktop`, `web` or `android`), identity class, bilingual context, original logo, product capture, website and contextual note. Add poster identity and responsive rules in `public/refinements.css`. Each project also supplies three bilingual benefits shown on the poster caption and explained in its details dialog. Keep supplied project logos intact. The gallery, platform filters, search and live metadata share the same explicit selection. The current gallery is staggered graphic posters: lime for ZipZap, lilac and pink for LOR., periwinkle for OpenDownload, and sage for Ibada. OpenDownload links separately to its landing page and public app. All selected projects remain visible and discoverable. Clicking a poster opens its real interface in a native preview dialog; Escape closes it and returns focus. Hover and keyboard focus move the screenshot within the poster, with reduced-motion and pause support.
 
 Only the selected public, active, original repositories belonging to Lord-Labs are fetched, by individual repository endpoint. An unexpected response or unavailable API keeps the saved copy visible with an explicit status. Search, command navigation, update dates and counts all use the same selected collection. No token is used.
 
@@ -68,7 +68,7 @@ Ctrl/Cmd K searches sections, selected projects and article titles. Arrow keys n
 | `public/repositories.js` | Selected project metadata validation and loading |
 | `public/theme.js`, `public/hero.js`, `public/assets/atmosphere/` | Theme bootstrap, controls, cloud horizons and offscreen motion pause |
 | `public/assets/tech/` | Locally hosted technology marks from Simple Icons |
-| `public/assets/projects/` | Original ZipZap and LOR. identities and product captures |
+| `public/assets/projects/` | Original project identities and product captures |
 | `DESIGN.md`, `IDEAS.md` | Decisions, references and next steps |
 
 ## Deployment
