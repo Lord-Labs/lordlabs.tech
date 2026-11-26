@@ -21,7 +21,8 @@ test('language and direction are resolved before body parsing; explicit links be
     assert.equal(root.lang, expected);
     assert.equal(root.dir, expected === 'ar' ? 'rtl' : 'ltr');
     assert.equal(preloads.length, 1);
-    assert.match(preloads[0].href, expected === 'ar' ? /alexandria-arabic/ : /jakarta-latin/);
+    assert.equal(preloads[0].href, 'https://ibada.lordlabs.tech/assets/thmanyahsans-Regular.woff2');
+    assert.equal(preloads[0].crossOrigin, '');
   }
   assert.equal(bootstrap('?lang=ar', null, true).root.lang, 'ar');
   assert.equal(bootstrap('', null, true).root.lang, 'en');

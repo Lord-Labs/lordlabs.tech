@@ -8,7 +8,7 @@
   root.dir = root.lang === 'ar' ? 'rtl' : 'ltr';
   const preload = document.createElement('link');
   preload.rel = 'preload'; preload.as = 'font'; preload.type = 'font/woff2'; preload.crossOrigin = '';
-  preload.href = `/assets/fonts/${root.lang === 'ar' ? 'alexandria-arabic' : 'jakarta-latin'}.woff2`;
+  preload.href = 'https://ibada.lordlabs.tech/assets/thmanyahsans-Regular.woff2';
   document.head.append(preload);
   // Native option labels and placeholders cannot contain the bilingual text spans.
   const attributes = 'option[data-i18n-ar],[data-placeholder-ar],[data-aria-ar]';
