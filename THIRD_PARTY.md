@@ -22,7 +22,9 @@ Interface SVGs in `public/assets/icons/`, excluding `github.svg`, come from [luc
 
 ## Fonts
 
-The current interface uses self-hosted variable [Alexandria](https://fonts.google.com/specimen/Alexandria) (Arabic subset, 31,348 bytes) and [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) (Latin subset, 27,348 bytes). Files were retrieved from Google Fonts on 2026-10-23; SIL Open Font License notices are retained in `licenses/alexandria.txt` and `licenses/plus-jakarta-sans.txt`. The selected language's primary font is preloaded. Earlier font assets below are retained for compatibility.
+The interface uses [Thmanyah Sans](https://font.thmanyah.com/) for text and Thmanyah Serif Display for headings in both languages. Both are loaded from the existing Ibada deployment at `ibada.lordlabs.tech`, with the regular Sans face preloaded. See the [Thmanyah font license](https://font.thmanyah.com/licenses).
+
+Self-hosted variable [Alexandria](https://fonts.google.com/specimen/Alexandria) and [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) serve as Arabic and Latin fallbacks. The SIL Open Font License notices are in `licenses/alexandria.txt` and `licenses/plus-jakarta-sans.txt`.
 
 Self-hosted WOFF2 files come from Google Fonts: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk), [Manrope](https://fonts.google.com/specimen/Manrope), and [Noto Sans Arabic](https://fonts.google.com/noto/specimen/Noto+Sans+Arabic). Each uses SIL Open Font License 1.1; notices are in `licenses/`.
 

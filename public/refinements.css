@@ -1,14 +1,14 @@
 /* Shared bilingual type, navigation, and product presentation. */
 @font-face{font-family:Jakarta;src:url('/assets/fonts/jakarta-latin.woff2') format('woff2');font-weight:400 700;font-display:swap}
 @font-face{font-family:Alexandria;src:url('/assets/fonts/alexandria-arabic.woff2') format('woff2');font-weight:400 700;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC}
-:root{--font:Jakarta,Arial,sans-serif;--display:Jakarta,Arial,sans-serif;--motion-fast:180ms;--motion-medium:360ms}
-html[lang=ar]{--font:Alexandria,Jakarta,Tahoma,sans-serif;--display:Alexandria,Jakarta,Tahoma,sans-serif}
+:root{--font:"Thmanyah Sans",Jakarta,Arial,sans-serif;--display:"Thmanyah Serif Display",Jakarta,Arial,sans-serif;--motion-fast:180ms;--motion-medium:360ms}
+html[lang=ar]{--font:"Thmanyah Sans",Alexandria,Jakarta,Tahoma,sans-serif;--display:"Thmanyah Serif Display",Alexandria,Jakarta,Tahoma,sans-serif}
 html[lang=ar] body{font-family:var(--font)}
 html[lang=en] [data-locale=ar],html[lang=ar] [data-locale=en]{display:none!important}
 html[lang=ar] :is(h1,h2,h3,.eyebrow,.mono,.repo-category,.stage-edition,.contribution-invitation h3,.closing h2){letter-spacing:0}
 html[lang=ar] :is(.eyebrow,.mono,.repo-category,.stage-edition){font-family:var(--font)}
-html[lang=ar] .language{font-family:Jakarta,Arial,sans-serif}
-html[lang=en] .language{font-family:Alexandria,Tahoma,sans-serif}
+html[lang=ar] .language{font-family:var(--font)}
+html[lang=en] .language{font-family:"Thmanyah Sans",Alexandria,Tahoma,sans-serif}
 :is(.section-heading>p,.projects .section-heading>p,.about-description,.principles p,.journal-card p,.contribution-invitation>p:not(.eyebrow),.closing .closing-description){font-size:15px;line-height:1.9}
 .section-heading>p,.projects .section-heading>p{max-width:370px}
 .desktop-nav a{font-size:13px;font-weight:500;opacity:1}
@@ -57,7 +57,7 @@ html[lang=ar] .article-body :is(p,blockquote){line-height:2.15}
 .identity-ibada{--poster:#e1ebd9;--poster-ink:#1f4536;--poster-shape:#b8cfb1;--poster-tilt:5deg;--poster-x:0%}
 .identity-ibada .project-poster .project-screenshot{top:max(47%, 230px);left:calc(50% - min(26%, 128px));width:min(52%, 256px)}
 .identity-ibada .repo-title{direction:inherit}
-html[lang=ar] .identity-ibada .repo-content h3{font-family:var(--font);letter-spacing:normal}
+html[lang=ar] .identity-ibada .repo-content h3{letter-spacing:normal}
 .project-filters{flex-wrap:wrap}
 .project-poster{position:relative;margin:0;min-width:0;height:690px;overflow:hidden;isolation:isolate;background:var(--poster);color:var(--poster-ink);border-radius:3px;cursor:zoom-in}
 .project-poster::before{content:'';position:absolute;width:370px;height:370px;border:68px solid var(--poster-shape);border-radius:50%;inset:auto auto 80px -100px;z-index:-1;transition:transform 900ms var(--ease)}
@@ -84,7 +84,7 @@ html[lang=ar] .poster-tagline{font-size:22px;line-height:1.8;letter-spacing:0;ma
 .identity-lor .project-poster:hover::before{transform:rotate(60deg) scale(1.1)}
 .repo-content{padding:28px 0 0;min-width:0}
 .repo-category{display:block;font:500 10px/1.8 var(--font);letter-spacing:1px;color:var(--muted);margin-bottom:10px}
-.repo-content h3{font:500 34px/1.3 Jakarta,Arial,sans-serif;letter-spacing:-1px}
+.repo-content h3{font:500 34px/1.3 var(--display);letter-spacing:-1px}
 .repo-title{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;direction:ltr}
 .repo-title .icon{width:44px;height:44px;padding:12px;border:1px solid var(--line);border-radius:50%;opacity:1;transition:transform 350ms var(--ease),background 200ms}
 .repo-title:hover .icon{transform:rotate(45deg);background:var(--subtle)}
@@ -99,7 +99,7 @@ html[lang=ar] .repo-content>.project-description{font-size:14px;line-height:2}
 .detail-button{display:inline-flex;align-items:center;gap:10px;background:transparent;padding:8px 0;color:var(--muted)}
 .detail-button .icon{width:16px;height:16px}
 html[lang=ar] .poster-topline .mono{letter-spacing:0;font-size:9px;line-height:1.9}
-html[lang=ar] .repo-content h3{letter-spacing:-1px}
+html[lang=ar] .repo-content h3{font-family:var(--display);letter-spacing:0}
 html[data-theme=dark] .project-poster{color:var(--poster-ink)}
 html[data-theme=dark] .project-poster .project-logo{filter:none}
 html[data-reveal-ready] .repo-card[data-reveal]{transition:opacity 650ms var(--ease),transform 650ms var(--ease)}
