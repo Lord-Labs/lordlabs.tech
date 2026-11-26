@@ -43,3 +43,15 @@ test('OpenDownload keeps the landing page and application links distinct on both
     assert.match(card, /width="1065" height="927"/);
   }
 });
+
+test('Ibada links to its Android download site and LORD Labs source on both gallery pages', async () => {
+  for (const route of ['index.html', 'projects/index.html']) {
+    const html = await readFile(new URL(`../public/${route}`, import.meta.url), 'utf8');
+    const card = html.match(/<article[^>]*id="project-ibada"[\s\S]*?<\/article>/)?.[0];
+    assert.ok(card, route);
+    assert.match(card, /href="https:\/\/ibada\.lordlabs\.tech\/"/);
+    assert.match(card, /href="https:\/\/github\.com\/Lord-Labs\/ibada"/);
+    assert.match(card, /عبادة/);
+    assert.match(html, /data-project-filter="android"/);
+  }
+});

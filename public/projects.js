@@ -62,6 +62,27 @@ export const projects = [
       {icon:"message-square",title:{en:"Arabic and English.",ar:"بالعربية والإنجليزية."},description:{en:"A bilingual workspace with RTL support and no account required.",ar:"مساحة عمل بلغتين تدعم اتجاه العربية دون الحاجة إلى حساب."}}
     ],
     note: {en:"For public content you own or have permission to save. Source support varies by link; YouTube and private or protected content are excluded. Files on the public app expire after 15 minutes. See the project website for current capabilities.",ar:"للمحتوى العام الذي تملكه أو لديك إذن بتنزيله. يختلف الدعم حسب الرابط؛ لا يشمل YouTube أو المحتوى الخاص أو المحمي. تنتهي صلاحية الملفات على التطبيق العام بعد 15 دقيقة. راجع موقع المشروع لمعرفة الإمكانات الحالية."}
+  },
+  {
+    platform: "android", repository: "ibada", slug: "ibada", identity: "ibada",
+    title: {en:"Ibada", ar:"عبادة"},
+    category: {en:"ANDROID APP · OPEN SOURCE", ar:"تطبيق أندرويد · مفتوح المصدر"},
+    tagline: {en:"Prayer times and daily remembrance.", ar:"مواقيت الصلاة والأذكار اليومية."},
+    description: {
+      en:"An Arabic Android app for offline prayer times, prayer reminders, daily adhkar, and tasbeeh. Free and ad-free.",
+      ar:"تطبيق عربي لأندرويد يحسب مواقيت الصلاة دون إنترنت، مع تنبيهات الصلاة والأذكار اليومية والسبحة. مجاني وبدون إعلانات."
+    },
+    website: "https://ibada.lordlabs.tech/",
+    logo: "/assets/projects/ibada.png", cover: "/assets/projects/ibada-today.webp",
+    coverWidth: 480, coverHeight: 971,
+    coverAlt: {en:"Ibada’s Today screen showing prayer times in Arabic", ar:"شاشة اليوم في عبادة تعرض مواقيت الصلاة بالعربية"},
+    facts: [{en:"Flutter",ar:"Flutter"},{en:"Android 8+",ar:"أندرويد ٨ فأحدث"},{en:"Arabic",ar:"العربية"}],
+    features: [
+      {icon:"sun",title:{en:"Offline prayer times",ar:"مواقيت الصلاة دون إنترنت"},description:{en:"Calculate prayer times for your city without a connection.",ar:"اعرف مواقيت الصلاة في مدينتك دون اتصال بالإنترنت."}},
+      {icon:"book-open",title:{en:"Daily adhkar",ar:"أذكار يومية"},description:{en:"Read morning and evening adhkar and keep track of repetitions.",ar:"اقرأ أذكار الصباح والمساء وتابع عدد التكرارات."}},
+      {icon:"circle-dot",title:{en:"Tasbeeh counter",ar:"سبحة تحفظ العدّ"},description:{en:"Continue your tasbeeh from your saved count.",ar:"أكمل التسبيح من حيث توقفت."}}
+    ],
+    note: {en:"Download the APK for Android 8 or later and follow the installation steps on the project website.",ar:"حمّل ملف APK لأندرويد ٨ فأحدث واتّبع خطوات التثبيت على موقع المشروع."}
   }
 ];
 export const projectCopy = (project, key, language) => project[key]?.[language] || project[key]?.en || "";

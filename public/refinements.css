@@ -54,6 +54,11 @@ html[lang=ar] .article-body :is(p,blockquote){line-height:2.15}
 .identity-zipzap{--poster:#d5f568;--poster-ink:#123c32;--poster-shape:#a9d24c;--poster-tilt:-7deg;--poster-x:4%}
 .identity-lor{--poster:#c8b8fa;--poster-ink:#2d2147;--poster-shape:#f381a9;--poster-tilt:7deg;--poster-x:-4%}
 .identity-opendownload{--poster:#dfe5ff;--poster-ink:#22283b;--poster-shape:#a8b2ef;--poster-tilt:-5deg;--poster-x:3%}
+.identity-ibada{--poster:#e1ebd9;--poster-ink:#1f4536;--poster-shape:#b8cfb1;--poster-tilt:5deg;--poster-x:0%}
+.identity-ibada .project-poster .project-screenshot{top:38%;left:calc(50% - min(26%, 128px));width:min(52%, 256px)}
+.identity-ibada .repo-title{direction:inherit}
+html[lang=ar] .identity-ibada .repo-content h3{font-family:var(--font);letter-spacing:normal}
+.project-filters{flex-wrap:wrap}
 .project-poster{position:relative;margin:0;min-width:0;height:690px;overflow:hidden;isolation:isolate;background:var(--poster);color:var(--poster-ink);border-radius:3px;cursor:zoom-in}
 .project-poster::before{content:'';position:absolute;width:370px;height:370px;border:68px solid var(--poster-shape);border-radius:50%;inset:auto auto 80px -100px;z-index:-1;transition:transform 900ms var(--ease)}
 .identity-lor .project-poster::before{border-radius:0;transform:rotate(35deg);width:300px;height:300px;inset:140px -110px auto auto;border-width:80px}
