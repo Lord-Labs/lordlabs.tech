@@ -30,7 +30,7 @@ export const projects = [
       en:"Open-source video meetings in your browser, with no account or download. Collaborate with shared notes and a board, use Arabic and English captions, and return to decisions linked to their source.",
       ar:"اجتماعات فيديو مفتوحة المصدر من المتصفح، دون حساب أو تنزيل. تعاون بالملاحظات واللوحة المشتركة، واستخدم التفريغ بالعربية والإنجليزية، وارجع إلى القرارات مع الكلام الذي يوضّح سياقها."
     },
-    website: "https://lor-bay.vercel.app/about",
+    website: "https://lor.lordlabs.tech/about",
     logo: "/assets/projects/lor.svg", cover: "/assets/projects/lor-meeting.webp",
     coverAlt: {en:"LOR. meeting workspace and confirmed decisions, captured by the project with demonstration data", ar:"واجهة اجتماع LOR. والقرارات المؤكدة، من لقطة المشروع الرسمية ببيانات توضيحية"},
     facts: [{en:"Browser-based",ar:"من المتصفح"},{en:"No account",ar:"دون حساب"},{en:"English / العربية",ar:"العربية / English"}],
